@@ -7,6 +7,8 @@ namespace ChargingCabinet
         static void Main(string[] args)
         {
             // Assemble your system here from all the classes
+            Door door = new Door();
+            RfidReader rfidReader = new RfidReader();
 
             bool finish = false;
             do
