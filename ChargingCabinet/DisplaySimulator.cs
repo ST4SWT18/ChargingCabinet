@@ -1,6 +1,6 @@
 ﻿namespace ChargingCabinet
 {
-    public class Display
+    public class DisplaySimulator
     {
 
     }

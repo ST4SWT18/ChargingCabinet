@@ -1,6 +1,6 @@
 ﻿namespace ChargingCabinet
 {
-    public class Door
+    public class DoorSimulator
     {
         public void LockDoor()
         {
