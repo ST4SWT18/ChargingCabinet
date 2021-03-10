@@ -1,6 +1,6 @@
 ﻿using Ladeskab;
 
-namespace ChargingCabinet
+namespace ChargingCabinet.Simulators
 {
     public class RfidReaderSimulator
     {
@@ -13,7 +13,6 @@ namespace ChargingCabinet
 
         public void OnRfidRead(int Id)
         {
-            _stationControl.
         }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Timers;
+using ChargingCabinet;
+using ChargingCabinet.Events;
 
-namespace UsbSimulator
+namespace UsbSimulator.Simulators
 {
     public class UsbChargerSimulator : IUsbCharger
     {

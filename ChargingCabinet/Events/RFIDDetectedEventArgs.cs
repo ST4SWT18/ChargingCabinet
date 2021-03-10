@@ -1,4 +1,4 @@
-﻿namespace ChargingCabinet
+﻿namespace ChargingCabinet.Events
 {
     public class RFIDDetectedEventArgs{}
 }
