@@ -83,6 +83,19 @@ namespace Ladeskab
             }
         }
 
+        public void DoorOpened()
+        {
+
+        }
+        public void DoorClosed()
+        {
+
+        }
+
+        public void CheckId(int OldId, int Id)
+        {
+
+        }
         // Her mangler de andre trigger handlere
     }
 }
