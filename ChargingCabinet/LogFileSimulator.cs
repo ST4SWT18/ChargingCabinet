@@ -1,6 +1,6 @@
 ﻿namespace ChargingCabinet
 {
-    public class RfidReader
+    public class LogFileSimulator
     {
 
     }

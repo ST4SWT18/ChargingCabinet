@@ -23,7 +23,7 @@ namespace Ladeskab
         private LadeskabState _state;
         private IUsbCharger _charger;
         private int _oldId;
-        private Door _door;
+        private DoorSimulator _door;
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
 
