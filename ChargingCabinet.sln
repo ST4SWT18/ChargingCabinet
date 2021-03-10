@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31019.35
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChargingCabinet", "ChargingCabinet\ChargingCabinet.csproj", "{234714E9-7DD9-4C7D-93A5-D9C16DFA1C54}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChargingCarbinet.Test", "ChargingCarbinet.Test\ChargingCarbinet.Test.csproj", "{8491A3CB-1223-440A-A693-1F5E2D4375CF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChargingCarbinet.UnitTests", "ChargingCarbinet.Test\ChargingCarbinet.UnitTests.csproj", "{8491A3CB-1223-440A-A693-1F5E2D4375CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
