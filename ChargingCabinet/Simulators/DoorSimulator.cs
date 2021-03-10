@@ -1,4 +1,4 @@
-﻿namespace ChargingCabinet.Simulators
+﻿namespace ChargingCabinet
 {
     public class DoorSimulator
     {
@@ -8,6 +8,16 @@
         }
 
         public void UnlockDoor()
+        {
+
+        }
+
+        public void OnDoorOpen()
+        {
+
+        }
+
+        public void OnDoorClose()
         {
 
         }
