@@ -1,4 +1,4 @@
-﻿namespace ChargingCabinet
+﻿namespace ChargingCabinet.Simulators
 {
     public class DisplaySimulator
     {

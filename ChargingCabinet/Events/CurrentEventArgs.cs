@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ChargingCabinet
+namespace ChargingCabinet.Events
 {
     public class CurrentEventArgs : EventArgs
     {

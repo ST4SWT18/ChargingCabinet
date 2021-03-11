@@ -11,5 +11,15 @@
         {
 
         }
+
+        public void OnDoorOpen()
+        {
+
+        }
+
+        public void OnDoorClose()
+        {
+
+        }
     }
 }
