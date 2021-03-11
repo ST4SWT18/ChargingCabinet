@@ -1,4 +1,5 @@
 ﻿using System;
+using ChargingCabinet.Simulators;
 using Ladeskab;
 
 namespace ChargingCabinet
@@ -9,8 +10,8 @@ namespace ChargingCabinet
         {
 
             // Assemble your system here from all the classes
-            DoorSimulator door = new DoorSimulator();
-            StationControl stationControl = new StationControl();
+            IDoorSimulator door = new DoorSimulator();IIdssgshejehk
+            IStationControl stationControl = new StationControl();
             RfidReaderSimulator rfidReader = new RfidReaderSimulator(stationControl);
 
             bool finish = false;
