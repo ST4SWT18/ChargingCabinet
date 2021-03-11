@@ -1,12 +1,15 @@
-﻿using Ladeskab;
+﻿using System;
+using ChargingCabinet.Events;
+using Ladeskab;
 
 namespace ChargingCabinet.Simulators
 {
     public class RfidReaderSimulator
     {
-        private StationControl _stationControl;
+        private IStationControl _stationControl;
+        public event EventHandler<RFIDDetectedEventArgs> RFIDDetectedEvent;
 
-        public RfidReaderSimulator(StationControl stationControl)
+        public RfidReaderSimulator(IStationControl stationControl)
         {
             _stationControl = stationControl;
         }

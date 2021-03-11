@@ -1,4 +1,9 @@
-﻿namespace ChargingCabinet.Events
+﻿using System;
+
+namespace ChargingCabinet.Events
 {
-    public class DoorCloseEventArgs{}
+    public class DoorCloseEventArgs : EventArgs
+    {
+
+    }
 }

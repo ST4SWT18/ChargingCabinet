@@ -7,4 +7,5 @@ namespace ChargingCabinet.Events
         // Value in mA (milliAmpere)
         public double Current { set; get; }
     }
+
 }
