@@ -7,7 +7,7 @@
     {
         public bool IsConnected()
         {
-            return null;
+            return true;//skal ændres
         }
 
         public void StartCharge()
