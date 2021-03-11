@@ -16,6 +16,7 @@ namespace ChargingCabinet.Simulators
 
         public void OnRfidRead(int Id)
         {
+            
         }
     }
 }

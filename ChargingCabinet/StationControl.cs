@@ -25,14 +25,16 @@ namespace Ladeskab
         private IUsbCharger _charger;
         private int _oldId;
         private IDoorSimulator _door;
+        private IChargeControl _chargeControl;
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
 
         // Her mangler constructor
-        public StationControl(IUsbCharger charger, IDoorSimulator door)
+        public StationControl(IUsbCharger charger, IDoorSimulator door, IChargeControl chargeControl)
         {
             _charger = charger;
             _door = door;
+            _chargeControl = chargeControl;
         }
 
         // Eksempel på event handler for eventet "RFID Detected" fra tilstandsdiagrammet for klassen
@@ -104,5 +106,4 @@ namespace Ladeskab
         }
         // Her mangler de andre trigger handlere
     }
-    
 }

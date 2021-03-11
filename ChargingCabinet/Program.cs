@@ -1,6 +1,7 @@
 ﻿using System;
 using ChargingCabinet.Simulators;
 using Ladeskab;
+using UsbSimulator.Simulators;
 
 namespace ChargingCabinet
 {
@@ -10,8 +11,9 @@ namespace ChargingCabinet
         {
 
             // Assemble your system here from all the classes
-            IDoorSimulator door = new DoorSimulator();IIdssgshejehk
-            IStationControl stationControl = new StationControl();
+            IDoorSimulator door = new DoorSimulator();
+            IUsbCharger usb = new UsbChargerSimulator();
+            IStationControl stationControl = new StationControl(usb,door);
             RfidReaderSimulator rfidReader = new RfidReaderSimulator(stationControl);
 
             bool finish = false;
@@ -19,24 +21,24 @@ namespace ChargingCabinet
             {
                 string input;
                 System.Console.WriteLine("Indtast E, O, C, R: ");
-                input = Console.ReadLine();
+                input = Console.ReadLine().ToString().ToLower();
                 if (string.IsNullOrEmpty(input)) continue;
 
                 switch (input[0])
                 {
-                    case 'E':
+                    case 'e':
                         finish = true;
                         break;
 
-                    case 'O':
+                    case 'o':
                         door.OnDoorOpen();
                         break;
 
-                    case 'C':
+                    case 'c':
                         door.OnDoorClose();
                         break;
 
-                    case 'R':
+                    case 'r':
                         System.Console.WriteLine("Indtast RFID id: ");
                         string idString = System.Console.ReadLine();
 

@@ -5,6 +5,12 @@
     /// </summary>
     public class ChargeControl
     {
+        public ChargeControl()
+        {
+            
+        }
+
+
         public bool IsConnected()
         {
             return true;//skal ændres
