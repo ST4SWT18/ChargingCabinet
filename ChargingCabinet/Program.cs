@@ -1,4 +1,5 @@
 ﻿using System;
+using ChargingCabinet.Simulators;
 using Ladeskab;
 
 namespace ChargingCabinet
