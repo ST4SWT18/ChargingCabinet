@@ -1,13 +1,19 @@
-﻿namespace ChargingCabinet
+﻿using ChargingCabinet.Simulators;
+
+namespace ChargingCabinet
 {
     /// <summary>
     /// Controller-klassen for opladningen
     /// </summary>
     public class ChargeControl
     {
-        public ChargeControl()
+        private IDisplaySimulator _displaySimulator;
+        private IUsbCharger _usbCharger;
+
+        public ChargeControl(IDisplaySimulator displaySimulator, IUsbCharger usbCharger)
         {
-            
+            _displaySimulator = displaySimulator;
+            _usbCharger = usbCharger;
         }
 
 

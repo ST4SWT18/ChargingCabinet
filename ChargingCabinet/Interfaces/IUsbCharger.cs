@@ -1,7 +1,7 @@
 ﻿using System;
 using ChargingCabinet.Events;
 
-namespace ChargingCabinet
+namespace ChargingCabinet.Interfaces
 {
     public interface IUsbCharger
     {

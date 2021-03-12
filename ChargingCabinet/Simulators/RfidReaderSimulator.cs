@@ -14,9 +14,9 @@ namespace ChargingCabinet.Simulators
             _stationControl = stationControl;
         }
 
-        public void OnRfidRead(int Id)
+        public void OnRfidRead()
         {
-            
+            RFIDDetectedEvent?.Invoke(this, new RFIDDetectedEventArgs());
         }
     }
 }

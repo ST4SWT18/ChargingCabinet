@@ -1,11 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
-using ChargingCabinet.Interfaces;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using ChargingCabinet;
 using ChargingCabinet.Simulators;
+using UsbSimulator;
 
 namespace Ladeskab
 {
-    public class StationControl
+    public class OldStationControl: IStationControl
     {
         // Enum med tilstande ("states") svarende til tilstandsdiagrammet for klassen
         private enum LadeskabState
@@ -17,21 +22,19 @@ namespace Ladeskab
 
         // Her mangler flere member variable
         private LadeskabState _state;
-        private IChargeControl _charger;
-        private IDisplaySimulator _displaySimulator;
-        private ILogFileSimulator _logFileSimulator;
+        private IUsbCharger _charger;
         private int _oldId;
         private IDoorSimulator _door;
-        
+        private IChargeControl _chargeControl;
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
 
-        public StationControl(IDoorSimulator door, IChargeControl chargeControl, IDisplaySimulator displaySimulator, ILogFileSimulator logFileSimulator)
+        // Her mangler constructor
+        public OldStationControl(IUsbCharger charger, IDoorSimulator door, IChargeControl chargeControl)
         {
+            _charger = charger;
             _door = door;
-            _charger = chargeControl;
-            _displaySimulator = displaySimulator;
-            _logFileSimulator = logFileSimulator;
+            _chargeControl = chargeControl;
         }
 
         // Eksempel på event handler for eventet "RFID Detected" fra tilstandsdiagrammet for klassen
