@@ -1,4 +1,6 @@
-﻿using ChargingCabinet.Simulators;
+﻿using System;
+using System.IO;
+using ChargingCabinet.Simulators;
 
 namespace ChargingCabinet.Interfaces
 {
@@ -6,7 +8,10 @@ namespace ChargingCabinet.Interfaces
     {
         public void LogDoorLocked(int Id)
         {
-            
+            using (var writer = File.AppendText(logFile))
+            {
+                writer.WriteLine(DateTime.Now + ": Skab låst med RFID: {0}", Id);
+            }
         }
 
         public void LogDoorUnlocked(int Id)
