@@ -1,4 +1,5 @@
-﻿using ChargingCabinet.Simulators;
+﻿using ChargingCabinet.Interfaces;
+using ChargingCabinet.Simulators;
 
 namespace ChargingCabinet
 {
