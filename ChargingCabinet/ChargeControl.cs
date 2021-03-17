@@ -20,7 +20,7 @@ namespace ChargingCabinet
 
         public bool IsConnected()
         {
-            return true;//skal ændres
+            return _usbCharger.Connected;//skal ændres
         }
 
         public void StartCharge()
