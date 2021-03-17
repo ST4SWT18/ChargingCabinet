@@ -45,6 +45,7 @@ namespace Ladeskab
                     {
                         _door.LockDoor();
                         _charger.StartCharge();
+                        _logFileSimulator.LogDoorUnlocked(id);
                         _oldId = id;
                         using (var writer = File.AppendText(logFile))
                         {
@@ -90,12 +91,12 @@ namespace Ladeskab
 
         public void DoorOpened()
         {
-
+            Console.WriteLine("Tilslut telefon");
         }
 
         public void DoorClosed()
         {
-
+            Console.WriteLine("Indlæs RFID");
         }
 
         public void CheckId(int OldId, int Id)
