@@ -2,6 +2,7 @@
 using System.Timers;
 using ChargingCabinet;
 using ChargingCabinet.Events;
+using ChargingCabinet.Interfaces;
 
 namespace UsbSimulator.Simulators
 {
