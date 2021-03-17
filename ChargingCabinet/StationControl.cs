@@ -99,8 +99,19 @@ namespace Ladeskab
 
         public void CheckId(int OldId, int Id)
         {
-
+            if (OldId == Id)
+            {
+                _charger.StopCharge();
+                _door.UnlockDoor();
+                _logFileSimulator.LogDoorUnlocked(Id);
+                Console.WriteLine("Fjern telefon!");
+            }
+            else
+            {
+                Console.WriteLine("RFID fejl!");
+            }
         }
+
         // Her mangler de andre trigger handlere
     }
 }
