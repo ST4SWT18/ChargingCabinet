@@ -1,4 +1,10 @@
 ﻿namespace ChargingCabinet.Interfaces
 {
-    public interface IChargeControl{}
+    public interface IChargeControl
+    {
+        bool IsConnected();
+        void StartCharge();
+
+        void StopCharge();
+    }
 }
