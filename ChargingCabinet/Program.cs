@@ -1,4 +1,5 @@
 ﻿using System;
+using ChargingCabinet.Interfaces;
 using ChargingCabinet.Simulators;
 using Ladeskab;
 using UsbSimulator.Simulators;

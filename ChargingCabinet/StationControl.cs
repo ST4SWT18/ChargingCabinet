@@ -43,16 +43,7 @@ namespace Ladeskab
                     // Check for ladeforbindelse
                     if (_charger.IsConnected())
                     {
-                        _door.LockDoor();
-                        _charger.StartCharge();
-                        _oldId = id;
-                        using (var writer = File.AppendText(logFile))
-                        {
-                            writer.WriteLine(DateTime.Now + ": Skab låst med RFID: {0}", id);
-                        }
-
-                        Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
-                        _state = LadeskabState.Locked;
+                        CheckId(_oldId,id);
                     }
                     else
                     {
