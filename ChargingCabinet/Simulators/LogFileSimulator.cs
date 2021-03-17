@@ -18,7 +18,10 @@ namespace ChargingCabinet.Interfaces
 
         public void LogDoorUnlocked(int Id)
         {
-
+            using (var writer = File.AppendText(logFile))
+            {
+                writer.WriteLine(DateTime.Now + ": Skab låst op med RFID: {0}", Id);
+            }
         }
     }
 }

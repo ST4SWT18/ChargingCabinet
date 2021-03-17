@@ -62,10 +62,7 @@ namespace Ladeskab
                     {
                         _charger.StopCharge();
                         _door.UnlockDoor();
-                        using (var writer = File.AppendText(logFile))
-                        {
-                            writer.WriteLine(DateTime.Now + ": Skab låst op med RFID: {0}", id);
-                        }
+                        _logFileSimulator.LogDoorUnlocked(id);
 
                         Console.WriteLine("Tag din telefon ud af skabet og luk døren");
                         _state = LadeskabState.Available;
@@ -103,7 +100,7 @@ namespace Ladeskab
             }
             else
             {
-                Console.WriteLine("RFID fejl!");
+                Console.WriteLine("Forkert RFID tag");
             }
         }
 
