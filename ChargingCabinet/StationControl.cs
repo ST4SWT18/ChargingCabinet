@@ -24,7 +24,7 @@ namespace Ladeskab
         private IDoorSimulator _door;
         
 
-        private string logFile = "logfile.txt"; // Navnet på systemets log-fil
+        
 
         public StationControl(IDoorSimulator door, IChargeControl chargeControl, IDisplaySimulator displaySimulator, ILogFileSimulator logFileSimulator)
         {

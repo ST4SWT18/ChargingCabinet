@@ -6,6 +6,8 @@ namespace ChargingCabinet.Interfaces
 {
     public class LogFileSimulator : ILogFileSimulator
     {
+        private string logFile = "logfile.txt"; // Navnet på systemets log-fil
+
         public void LogDoorLocked(int Id)
         {
             using (var writer = File.AppendText(logFile))
