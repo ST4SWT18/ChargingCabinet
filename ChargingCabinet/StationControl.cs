@@ -92,6 +92,7 @@ namespace Ladeskab
         {
 
         }
+
         public void DoorClosed()
         {
 

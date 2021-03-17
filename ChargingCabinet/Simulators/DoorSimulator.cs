@@ -1,5 +1,6 @@
 ﻿using System;
 using ChargingCabinet.Events;
+using ChargingCabinet.Interfaces;
 
 namespace ChargingCabinet
 {
@@ -18,6 +19,7 @@ namespace ChargingCabinet
 
         }
 
+        //Notify
         public void OnDoorOpen()
         {
 
