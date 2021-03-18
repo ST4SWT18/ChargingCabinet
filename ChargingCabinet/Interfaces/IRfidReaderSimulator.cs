@@ -7,6 +7,6 @@ namespace ChargingCabinet.Interfaces
     {
         event EventHandler<RFIDDetectedEventArgs> RFIDDetectedEvent;
 
-        void OnRfidRead();
+        void OnRfidRead(int id);
     }
 }

@@ -24,8 +24,6 @@ namespace Ladeskab
         private IDoorSimulator _door;
         
 
-        
-
         public StationControl(IDoorSimulator door, IChargeControl chargeControl, IDisplaySimulator displaySimulator, ILogFileSimulator logFileSimulator)
         {
             _door = door;
