@@ -1,4 +1,5 @@
-﻿using ChargingCabinet.Interfaces;
+﻿using System;
+using ChargingCabinet.Interfaces;
 using ChargingCabinet.Simulators;
 
 namespace ChargingCabinet
@@ -25,12 +26,12 @@ namespace ChargingCabinet
 
         public void StartCharge()
         {
-
+            Console.WriteLine("Is charging");
         }
 
         public void StopCharge()
         {
-
+            Console.WriteLine("Stopped charging");
         }
     }
 }
