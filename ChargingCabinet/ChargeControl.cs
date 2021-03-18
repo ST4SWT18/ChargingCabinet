@@ -7,7 +7,7 @@ namespace ChargingCabinet
     /// <summary>
     /// Controller-klassen for opladningen
     /// </summary>
-    public class ChargeControl
+    public class ChargeControl : IChargeControl
     {
         private IDisplaySimulator _displaySimulator;
         private IUsbCharger _usbCharger;
