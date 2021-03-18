@@ -14,7 +14,10 @@ namespace ChargingCabinet
             // Assemble your system here from all the classes
             IDoorSimulator door = new DoorSimulator();
             IUsbCharger usb = new UsbChargerSimulator();
-            IStationControl stationControl = new StationControl(usb,door);
+            IDisplaySimulator display = new DisplaySimulator();
+            ILogFileSimulator log = new LogFileSimulator();
+            IChargeControl chargeControl = new ChargeControl(display, usb);
+            IStationControl stationControl = new StationControl(door,chargeControl,display,log);
             RfidReaderSimulator rfidReader = new RfidReaderSimulator(stationControl);
 
             bool finish = false;
