@@ -43,7 +43,14 @@ namespace Ladeskab
                     // Check for ladeforbindelse
                     if (_charger.IsConnected())
                     {
-                        CheckId(_oldId,id);
+                        _door.LockDoor();
+                        _charger.StartCharge();
+                        _oldId = id;
+                        _logFileSimulator.LogDoorLocked(_oldId);
+
+
+                        Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
+                        _state = LadeskabState.Locked;
                     }
                     else
                     {
@@ -58,19 +65,7 @@ namespace Ladeskab
 
                 case LadeskabState.Locked:
                     // Check for correct ID
-                    if (id == _oldId)
-                    {
-                        _charger.StopCharge();
-                        _door.UnlockDoor();
-                        _logFileSimulator.LogDoorUnlocked(id);
-
-                        Console.WriteLine("Tag din telefon ud af skabet og luk døren");
-                        _state = LadeskabState.Available;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Forkert RFID tag");
-                    }
+                    CheckId(_oldId, id);
 
                     break;
             }
@@ -88,22 +83,19 @@ namespace Ladeskab
 
         public void CheckId(int OldId, int Id)
         {
-            if (OldId == Id)
+            if (Id == _oldId)
             {
-                _door.LockDoor();
-                _charger.StartCharge();
-                _oldId = Id;
-                _logFileSimulator.LogDoorLocked(Id);
+                _charger.StopCharge();
+                _door.UnlockDoor();
+                _logFileSimulator.LogDoorUnlocked(Id);
 
-                Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
-                _state = LadeskabState.Locked;
+                Console.WriteLine("Tag din telefon ud af skabet og luk døren");
+                _state = LadeskabState.Available;
             }
             else
             {
                 Console.WriteLine("Forkert RFID tag");
             }
         }
-
-        // Her mangler de andre trigger handlere
     }
 }
