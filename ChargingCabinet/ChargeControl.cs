@@ -1,5 +1,4 @@
-﻿using ChargingCabinet.Interfaces;
-using ChargingCabinet.Simulators;
+﻿using ChargingCabinet.Simulators;
 
 namespace ChargingCabinet
 {
@@ -20,7 +19,7 @@ namespace ChargingCabinet
 
         public bool IsConnected()
         {
-            return _usbCharger.Connected;
+            return true;//skal ændres
         }
 
         public void StartCharge()
