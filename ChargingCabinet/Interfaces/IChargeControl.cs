@@ -6,5 +6,6 @@
         void StartCharge();
 
         void StopCharge();
+        
     }
 }
