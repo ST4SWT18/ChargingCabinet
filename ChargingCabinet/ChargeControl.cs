@@ -26,11 +26,13 @@ namespace ChargingCabinet
 
         public void StartCharge()
         {
+            _usbCharger.StartCharge();
             Console.WriteLine("Is charging");
         }
 
         public void StopCharge()
         {
+            _usbCharger.StopCharge();
             Console.WriteLine("Stopped charging");
         }
     }
