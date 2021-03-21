@@ -47,7 +47,7 @@ namespace ChargingCabinet
                         string idString = System.Console.ReadLine();
 
                         int id = Convert.ToInt32(idString);
-                        rfidReader.OnRfidRead(id);
+                        rfidReader.OnRfidRead();
                         break;
 
                     default:
