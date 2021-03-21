@@ -47,16 +47,19 @@ namespace Ladeskab
                         _logFileSimulator.LogDoorLocked(_oldId);
 
 
+                        //Det her skal vel gå gennem en metode i DisplaySimulator?
                         Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
                         _state = LadeskabState.Locked;
                     }
                     else
                     {
+
+                        //Det her skal vel gå gennem en metode i DisplaySimulator?
                         Console.WriteLine("Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
                     }
 
                     break;
-
+                    //hvornår er DoorOpen casen relevant? 
                 case LadeskabState.DoorOpen:
                     // Ignore
                     break;
@@ -71,11 +74,14 @@ namespace Ladeskab
 
         public void DoorOpened()
         {
+            //Det her skal vel gå gennem en metode i DisplaySimulator?
             Console.WriteLine("Tilslut telefon");
         }
 
         public void DoorClosed()
         {
+
+            //Det her skal vel gå gennem en metode i DisplaySimulator?
             Console.WriteLine("Indlæs RFID");
         }
 
@@ -87,11 +93,15 @@ namespace Ladeskab
                 _door.UnlockDoor();
                 _logFileSimulator.LogDoorUnlocked(Id);
 
+
+                //Det her skal vel gå gennem en metode i DisplaySimulator?
                 Console.WriteLine("Tag din telefon ud af skabet og luk døren");
                 _state = LadeskabState.Available;
             }
             else
             {
+
+                //Det her skal vel gå gennem en metode i DisplaySimulator?
                 Console.WriteLine("Forkert RFID tag");
             }
         }

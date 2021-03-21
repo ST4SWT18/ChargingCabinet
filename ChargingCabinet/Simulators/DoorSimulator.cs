@@ -14,12 +14,13 @@ namespace ChargingCabinet
 
         public void LockDoor()
         {
-
+            Console.WriteLine("Door has been locked");
         }
 
         public void UnlockDoor()
         {
 
+            Console.WriteLine("Door has been unlocked");
         }
 
         //Notify

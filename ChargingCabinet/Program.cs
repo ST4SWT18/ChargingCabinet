@@ -2,6 +2,7 @@
 using ChargingCabinet.Interfaces;
 using ChargingCabinet.Simulators;
 using Ladeskab;
+using Microsoft.VisualBasic;
 using UsbSimulator.Simulators;
 
 namespace ChargingCabinet
@@ -19,6 +20,10 @@ namespace ChargingCabinet
             IChargeControl chargeControl = new ChargeControl(display, usb);
             IStationControl stationControl = new StationControl(door,chargeControl,display,log);
             RfidReaderSimulator rfidReader = new RfidReaderSimulator(stationControl);
+
+
+            //er ikke sikker på dette -B
+            door.DoorOpenEvent += DoorOpenedEvent;
 
             bool finish = false;
             do
@@ -55,6 +60,13 @@ namespace ChargingCabinet
                 }
 
             } while (!finish);
+
+            //er ikke sikker på dette -B
+            static void DoorOpenedEvent(object sender, EventArgs e)
+            {
+                //display.ShowConnectMessage();
+                Console.WriteLine("Connect din telefon til ladestikket");
+            }
         }
     }
 }
