@@ -1,10 +1,8 @@
 ﻿using System;
 using ChargingCabinet.Interfaces;
 using ChargingCabinet.Simulators;
-using Ladeskab;
-using UsbSimulator.Simulators;
 
-namespace ChargingCabinet
+namespace ChargingCabinet.Application
 {
     class Program
     {
