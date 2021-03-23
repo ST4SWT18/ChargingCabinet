@@ -96,14 +96,14 @@ namespace ChargingCarbinet.UnitTests
         [TestCase(false)]
         //[TestCase(true)] virker sgu ikke med true, ved ikke hvorfor endnu
         //fordi dooropenedvalue er false by default i think
-        public void test1(bool newBool)
+        public void DoorOpenedValue_IsEqualTo_Argument(bool newBool)
         {
             _uut.DoorOpenEvent += Raise.EventWith(new DoorOpenEventArgs() { DoorOpened = newBool });
             Assert.That(_uut.DoorOpenedValue, Is.EqualTo(newBool));
         }
 
         [TestCase(true)]
-        public void test2(bool newBool)
+        public void DoorClosedValue_IsEqualTo_Argument(bool newBool)
         {
             _uut.DoorCloseEvent += Raise.EventWith(new DoorCloseEventArgs() { DoorClosed = newBool });
             Assert.That(_uut.DoorClosedValue, Is.EqualTo(newBool));

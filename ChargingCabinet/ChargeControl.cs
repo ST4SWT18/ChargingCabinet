@@ -51,13 +51,11 @@ namespace ChargingCabinet
         public void StartCharge()
         {
             _usbCharger.StartCharge();
-            
         }
 
         public void StopCharge()
         {
             _usbCharger.StopCharge();
-            
         }
     }
 }
