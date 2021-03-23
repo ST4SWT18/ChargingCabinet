@@ -45,19 +45,17 @@ namespace ChargingCabinet
 
         public bool IsConnected()
         {
-            _usbCharger.s
+            return _usbCharger.Connected;
         }
 
         public void StartCharge()
         {
             _usbCharger.StartCharge();
-            
         }
 
         public void StopCharge()
         {
             _usbCharger.StopCharge();
-            
         }
     }
 }

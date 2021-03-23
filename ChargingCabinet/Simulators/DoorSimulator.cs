@@ -9,29 +9,40 @@ namespace ChargingCabinet
         public event EventHandler<DoorOpenEventArgs> DoorOpenEvent;
         public event EventHandler<DoorCloseEventArgs> DoorCloseEvent;
 
-        public bool DoorOpenedValue{ get; private set; }
-        public bool DoorClosedValue{ get; private set; }
+        public bool IsLocked { get; set; } = true; //tilføjet LB
+
+        public bool DoorOpenedValue { get; set; }
+        public bool DoorClosedValue { get; set; }
+        private IStationControl _stationControl;
+
+        public DoorSimulator(IStationControl stationControl)
+        {
+            DoorOpenedValue = false;
+            DoorClosedValue = true;
+            _stationControl = stationControl;
+        }
 
         public void LockDoor()
         {
-            Console.WriteLine("Door has been locked");
+            Console.WriteLine("Dør er låst");
+            IsLocked = true; //tilføjet LB
         }
 
         public void UnlockDoor()
         {
-
-            Console.WriteLine("Door has been unlocked");
+            Console.WriteLine("Dør er ulåst");
+            IsLocked = false; //tilføjet LB
         }
 
         //Notify
         public void OnDoorOpen()
         {
-            DoorOpenEvent?.Invoke(this, new DoorOpenEventArgs() {DoorOpened = this.DoorOpenedValue});
+            DoorOpenEvent?.Invoke(this, new DoorOpenEventArgs() {DoorOpened = DoorOpenedValue});
         }
 
         public void OnDoorClose()
         {
-            DoorCloseEvent?.Invoke(this, new DoorCloseEventArgs() {DoorClosed = this.DoorClosedValue});
+            DoorCloseEvent?.Invoke(this, new DoorCloseEventArgs() {DoorClosed = DoorClosedValue});
         }
     }
 }
