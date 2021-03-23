@@ -1,8 +1,11 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using NUnit.Framework;
 
-namespace ChargingCarbinet.Test
+namespace ChargingCarbinet.UnitTests
 {
-    public class Tests
+    public class TestLogFileSimulator
     {
         [SetUp]
         public void Setup()

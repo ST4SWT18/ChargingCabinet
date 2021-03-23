@@ -11,5 +11,8 @@ namespace ChargingCabinet.Interfaces
         void ShowConnectionErrorMessage();
         void ShowRfidErrorMessage();
         void ShowTakePhoneAndCloseDoorMessage();
+        void ShowFullyChargedMessage();
+        void ShowCurrentErrorMessage();
+        void ShowCurrentlyChargingMessage();
     }
 }
