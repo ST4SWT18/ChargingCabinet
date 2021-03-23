@@ -14,7 +14,7 @@ namespace ChargingCabinet.Simulators
         {
         }
 
-        public void OnRfidRead(int id)
+        public void OnRfidRead()
         {
             RFIDDetectedEvent?.Invoke(this, new RFIDDetectedEventArgs() {RFIDDetected = this.RFIDDetectedValue});
         }
