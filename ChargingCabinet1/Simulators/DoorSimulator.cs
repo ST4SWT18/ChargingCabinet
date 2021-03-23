@@ -10,7 +10,7 @@ namespace ChargingCabinet
         public event EventHandler<DoorOpenEventArgs> DoorOpenEvent;
         public event EventHandler<DoorCloseEventArgs> DoorCloseEvent;
 
-        public bool IsLocked { get; set; } = true; //tilføjet LB
+        public bool IsLocked { get; set; } = true;
 
         public bool DoorOpenedValue { get; set; }
         public bool DoorClosedValue { get; set; }
@@ -23,14 +23,12 @@ namespace ChargingCabinet
 
         public void LockDoor()
         {
-            Console.WriteLine("Dør er låst");
-            IsLocked = true; //tilføjet LB
+            IsLocked = true;
         }
 
         public void UnlockDoor()
         {
-            Console.WriteLine("Dør er ulåst");
-            IsLocked = false; //tilføjet LB
+            IsLocked = false;
         }
 
         //Notify

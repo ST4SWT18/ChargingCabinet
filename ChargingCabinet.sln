@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChargingCabinet.Application
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChargingCarbinet.UnitTests", "ChargingCarbinet.Test\ChargingCarbinet.UnitTests.csproj", "{8491A3CB-1223-440A-A693-1F5E2D4375CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChargingCabinet", "ChargingCabinet1\ChargingCabinet.csproj", "{F083E356-C52D-4DE0-AAB9-57BFCCBB7F50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChargingCabinet", "ChargingCabinet1\ChargingCabinet.csproj", "{F083E356-C52D-4DE0-AAB9-57BFCCBB7F50}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
