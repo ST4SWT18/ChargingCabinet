@@ -1,7 +1,7 @@
 ﻿<AnalyseParams>
   <TargetExecutable>C:\Program Files\dotnet\dotnet.exe</TargetExecutable>
   <TargetArguments>test --logger:nunit;LogFileName=TestResults.xml</TargetArguments>
-  <TargetWorkingDir>ChargingCabinet.UnitTests</TargetWorkingDir>
+  <TargetWorkingDir>ChargingCarbinet.UnitTests</TargetWorkingDir>
   <TempDir>
     <!--  Directory for the auxiliary files. Set to system temp by default.  -->
   </TempDir>
