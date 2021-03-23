@@ -8,7 +8,7 @@ namespace ChargingCabinet.Simulators
     public class RfidReaderSimulator : IRfidReaderSimulator
     {
         public event EventHandler<RFIDDetectedEventArgs> RFIDDetectedEvent;
-        public bool RFIDDetectedValue { get; private set; }
+        public int RFIDDetectedValue { get; set; }
 
         public RfidReaderSimulator()
         {
@@ -16,7 +16,8 @@ namespace ChargingCabinet.Simulators
 
         public void OnRfidRead(int id)
         {
-            RFIDDetectedEvent?.Invoke(this, new RFIDDetectedEventArgs() {RFIDDetected = this.RFIDDetectedValue});
+            RFIDDetectedValue = id;
+            RFIDDetectedEvent?.Invoke(this, new RFIDDetectedEventArgs() {RFIDDetected = RFIDDetectedValue});
         }
     }
 }
