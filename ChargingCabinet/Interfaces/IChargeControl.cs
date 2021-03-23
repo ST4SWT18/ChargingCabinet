@@ -1,11 +1,13 @@
-﻿namespace ChargingCabinet.Interfaces
+﻿using System;
+
+namespace ChargingCabinet.Interfaces
 {
     public interface IChargeControl
     {
         bool IsConnected();
-        void StartCharge();
+        void StartCharge(object sender, EventArgs e);
 
-        void StopCharge();
+        void StopCharge(object sender, EventArgs e);
         
     }
 }

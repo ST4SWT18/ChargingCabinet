@@ -32,7 +32,7 @@ namespace ChargingCabinet
             
         }
 
-        public void StopCharge()
+        public void StopCharge(object sender, EventArgs e)
         {
             _usbCharger.StopCharge();
             Console.WriteLine("Stopped charging");
