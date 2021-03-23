@@ -30,6 +30,9 @@ namespace Ladeskab
             _charger = chargeControl;
             _displaySimulator = displaySimulator;
             _logFileSimulator = logFileSimulator;
+
+            _door.DoorOpenEvent += DoorOpened;
+            _door.DoorCloseEvent += DoorClosed;
         }
 
         // Eksempel på event handler for eventet "RFID Detected" fra tilstandsdiagrammet for klassen
@@ -46,16 +49,12 @@ namespace Ladeskab
                         _oldId = id;
                         _logFileSimulator.LogDoorLocked(_oldId);
 
-
-                        //Det her skal vel gå gennem en metode i DisplaySimulator?
-                        Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
+                        _displaySimulator.ShowPhoneChargingMessage();
                         _state = LadeskabState.Locked;
                     }
                     else
                     {
-
-                        //Det her skal vel gå gennem en metode i DisplaySimulator?
-                        Console.WriteLine("Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
+                        _displaySimulator.ShowConnectionErrorMessage();
                     }
 
                     break;
@@ -72,17 +71,15 @@ namespace Ladeskab
             }
         }
 
-        public void DoorOpened()
+        public void DoorOpened(object sender, EventArgs e)
         {
-            //Det her skal vel gå gennem en metode i DisplaySimulator?
-            Console.WriteLine("Tilslut telefon");
+            _displaySimulator.ShowConnectPhoneMessage();
         }
 
-        public void DoorClosed()
+        public void DoorClosed(object sender, EventArgs e)
         {
-
-            //Det her skal vel gå gennem en metode i DisplaySimulator?
-            Console.WriteLine("Indlæs RFID");
+            _displaySimulator.ShowReadRfidMessage();
+            
         }
 
         public void CheckId(int OldId, int Id)
@@ -93,16 +90,13 @@ namespace Ladeskab
                 _door.UnlockDoor();
                 _logFileSimulator.LogDoorUnlocked(Id);
 
-
-                //Det her skal vel gå gennem en metode i DisplaySimulator?
-                Console.WriteLine("Tag din telefon ud af skabet og luk døren");
+                _displaySimulator.ShowTakePhoneAndCloseDoorMessage();
                 _state = LadeskabState.Available;
             }
             else
             {
 
-                //Det her skal vel gå gennem en metode i DisplaySimulator?
-                Console.WriteLine("Forkert RFID tag");
+                _displaySimulator.ShowRfidErrorMessage();
             }
         }
     }
