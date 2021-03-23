@@ -7,13 +7,11 @@ namespace ChargingCabinet.Simulators
 {
     public class RfidReaderSimulator : IRfidReaderSimulator
     {
-        private IStationControl _stationControl;
         public event EventHandler<RFIDDetectedEventArgs> RFIDDetectedEvent;
         public bool RFIDDetectedValue { get; private set; }
 
-        public RfidReaderSimulator(IStationControl stationControl)
+        public RfidReaderSimulator()
         {
-            _stationControl = stationControl;
         }
 
         public void OnRfidRead(int id)

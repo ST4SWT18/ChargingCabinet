@@ -1,6 +1,7 @@
 ﻿using System;
 using ChargingCabinet.Events;
 using ChargingCabinet.Interfaces;
+using Ladeskab;
 
 namespace ChargingCabinet
 {
@@ -13,13 +14,11 @@ namespace ChargingCabinet
 
         public bool DoorOpenedValue { get; set; }
         public bool DoorClosedValue { get; set; }
-        private IStationControl _stationControl;
 
-        public DoorSimulator(IStationControl stationControl)
+        public DoorSimulator()
         {
             DoorOpenedValue = false;
             DoorClosedValue = true;
-            _stationControl = stationControl;
         }
 
         public void LockDoor()
