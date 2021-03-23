@@ -13,7 +13,7 @@ namespace ChargingCarbinet.Test
         public void Setup()
         {
             _stationControl = Substitute.For<IStationControl>();
-            _uut = new RfidReaderSimulator(_stationControl);
+            _uut = new RfidReaderSimulator();
         }
 
         [Test]

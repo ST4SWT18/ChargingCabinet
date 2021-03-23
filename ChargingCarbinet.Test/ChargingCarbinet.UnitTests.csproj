@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ChargingCabinet\ChargingCabinet.csproj" />
+    <ProjectReference Include="..\ChargingCabinet\ChargingCabinet.Application.csproj" />
   </ItemGroup>
 
 </Project>
