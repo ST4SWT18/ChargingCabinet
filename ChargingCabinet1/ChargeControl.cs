@@ -12,6 +12,7 @@ namespace ChargingCabinet
     {
         private IDisplaySimulator _displaySimulator;
         private IUsbCharger _usbCharger;
+        public double CurrentCurrent { get; set; } //hehe
 
         public ChargeControl(IDisplaySimulator displaySimulator, IUsbCharger usbCharger)
         {
@@ -23,25 +24,26 @@ namespace ChargingCabinet
 
         private void NewCurrentValue(object sender, CurrentEventArgs e)
         {
-            if (_usbCharger.CurrentValue == 0)
+            CurrentCurrent = e.Current;
+
+            if (CurrentCurrent == 0)
             {
-                
+
             }
-            else if (_usbCharger.CurrentValue > 0 && _usbCharger.CurrentValue <= 5)
+            if (CurrentCurrent > 0 && CurrentCurrent <= 5)
             {
                 _displaySimulator.ShowFullyChargedMessage();
             }
-            else if (_usbCharger.CurrentValue > 5 && _usbCharger.CurrentValue <= 500)
+            if (CurrentCurrent > 5 && CurrentCurrent <= 500)
             {
                 _displaySimulator.ShowCurrentlyChargingMessage();
             }
-            else if (_usbCharger.CurrentValue > 500)
+            if (CurrentCurrent > 500)
             {
                 _displaySimulator.ShowCurrentErrorMessage();
                 StopCharge();
             }
         }
-
 
         public bool IsConnected()
         {
