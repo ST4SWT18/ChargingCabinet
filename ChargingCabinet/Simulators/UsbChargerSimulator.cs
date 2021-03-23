@@ -81,6 +81,9 @@ namespace UsbSimulator.Simulators
                 if (Connected && !_overload)
                 {
                     CurrentValue = 500;
+
+                    //skal den være her?? - B
+                    Console.WriteLine("Is charging");
                 }
                 else if (Connected && _overload)
                 {
