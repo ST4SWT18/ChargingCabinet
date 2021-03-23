@@ -1,7 +1,7 @@
-﻿using ChargingCabinet.Events;
+﻿using ChargingCabinet;
+using ChargingCabinet.Events;
 using ChargingCabinet.Interfaces;
 using ChargingCabinet.Simulators;
-using Ladeskab;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -25,11 +25,5 @@ namespace ChargingCarbinet.UnitTests
             _uut = new StationControl(_doorSimulator, _chargeControl, _displaySimulator, _logFileSimulator);
         }
 
-
-        [Test]
-        public void test(bool newBool)
-        {
-
-        }
     }
 }

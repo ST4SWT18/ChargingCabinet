@@ -1,7 +1,6 @@
 ﻿using System;
 using ChargingCabinet.Events;
 using ChargingCabinet.Interfaces;
-using Ladeskab;
 
 namespace ChargingCabinet
 {

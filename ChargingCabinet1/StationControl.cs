@@ -3,7 +3,7 @@ using System.IO;
 using ChargingCabinet.Interfaces;
 using ChargingCabinet.Simulators;
 
-namespace Ladeskab
+namespace ChargingCabinet
 {
     public class StationControl : IStationControl
     {
