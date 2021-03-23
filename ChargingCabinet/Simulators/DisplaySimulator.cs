@@ -35,5 +35,20 @@ namespace ChargingCabinet.Simulators
         {
             Console.WriteLine("Tag din telefon ud af skabet og luk døren");
         }
+
+        public void ShowFullyChargedMessage()
+        {
+            Console.WriteLine("Din telefon er fuldt opladet");
+        }
+
+        public void ShowCurrentErrorMessage()
+        {
+            Console.WriteLine("Der skete en fejl. Opladning er stoppet.");
+        }
+
+        public void ShowCurrentlyChargingMessage()
+        {
+            Console.WriteLine("Telefonen oplades");
+        }
     }
 }

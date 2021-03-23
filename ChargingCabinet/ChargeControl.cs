@@ -1,4 +1,5 @@
 ﻿using System;
+using ChargingCabinet.Events;
 using ChargingCabinet.Interfaces;
 using ChargingCabinet.Simulators;
 
@@ -17,25 +18,46 @@ namespace ChargingCabinet
             _displaySimulator = displaySimulator;
             _usbCharger = usbCharger;
 
-            _usbCharger.CurrentValueEvent += StartCharge;
+            _usbCharger.CurrentValueEvent += NewCurrentValue;
+        }
+
+        private void NewCurrentValue(object sender, CurrentEventArgs e)
+        {
+            if (_usbCharger.CurrentValue == 0)
+            {
+                
+            }
+            else if (_usbCharger.CurrentValue > 0 && _usbCharger.CurrentValue <= 5)
+            {
+                _displaySimulator.ShowFullyChargedMessage();
+            }
+            else if (_usbCharger.CurrentValue > 5 && _usbCharger.CurrentValue <= 500)
+            {
+                _displaySimulator.ShowCurrentlyChargingMessage();
+            }
+            else if (_usbCharger.CurrentValue > 500)
+            {
+                _displaySimulator.ShowCurrentErrorMessage();
+                StopCharge();
+            }
         }
 
 
         public bool IsConnected()
         {
-            return true;//skal ændres
+            _usbCharger.s
         }
 
-        public void StartCharge(object sender, EventArgs e)
+        public void StartCharge()
         {
             _usbCharger.StartCharge();
             
         }
 
-        public void StopCharge(object sender, EventArgs e)
+        public void StopCharge()
         {
             _usbCharger.StopCharge();
-            Console.WriteLine("Stopped charging");
+            
         }
     }
 }
