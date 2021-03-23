@@ -5,6 +5,11 @@ namespace ChargingCabinet.Interfaces
 {
     public interface IDisplaySimulator
     {
-
+        void ShowConnectPhoneMessage();
+        void ShowReadRfidMessage();
+        void ShowPhoneChargingMessage();
+        void ShowConnectionErrorMessage();
+        void ShowRfidErrorMessage();
+        void ShowTakePhoneAndCloseDoorMessage();
     }
 }

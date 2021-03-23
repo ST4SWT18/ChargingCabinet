@@ -16,6 +16,8 @@ namespace ChargingCabinet
         {
             _displaySimulator = displaySimulator;
             _usbCharger = usbCharger;
+
+            _usbCharger.CurrentValueEvent += StartCharge;
         }
 
 
@@ -24,10 +26,10 @@ namespace ChargingCabinet
             return true;//skal ændres
         }
 
-        public void StartCharge()
+        public void StartCharge(object sender, EventArgs e)
         {
             _usbCharger.StartCharge();
-            Console.WriteLine("Is charging");
+            
         }
 
         public void StopCharge()

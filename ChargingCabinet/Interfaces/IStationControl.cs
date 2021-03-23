@@ -1,9 +1,11 @@
-﻿namespace ChargingCabinet.Interfaces
+﻿using System;
+
+namespace ChargingCabinet.Interfaces
 {
     public interface IStationControl
     {
-        public void DoorOpened();
-        public void DoorClosed();
+        public void DoorOpened(object sender, EventArgs e);
+        public void DoorClosed(object sender, EventArgs e);
         public void CheckId(int OldId, int Id);
     }
 }

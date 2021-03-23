@@ -22,9 +22,6 @@ namespace ChargingCabinet
             RfidReaderSimulator rfidReader = new RfidReaderSimulator(stationControl);
 
 
-            //er ikke sikker på dette -B
-            door.DoorOpenEvent += DoorOpenedEvent;
-
             bool finish = false;
             do
             {
@@ -61,12 +58,6 @@ namespace ChargingCabinet
 
             } while (!finish);
 
-            //er ikke sikker på dette -B
-            static void DoorOpenedEvent(object sender, EventArgs e)
-            {
-                //display.ShowConnectMessage();
-                Console.WriteLine("Connect din telefon til ladestikket");
-            }
         }
     }
 }
