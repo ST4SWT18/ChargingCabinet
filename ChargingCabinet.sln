@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31019.35
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChargingCabinet", "ChargingCabinet\ChargingCabinet.csproj", "{234714E9-7DD9-4C7D-93A5-D9C16DFA1C54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChargingCabinet.Application", "ChargingCabinet\ChargingCabinet.Application.csproj", "{234714E9-7DD9-4C7D-93A5-D9C16DFA1C54}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChargingCarbinet.UnitTests", "ChargingCarbinet.Test\ChargingCarbinet.UnitTests.csproj", "{8491A3CB-1223-440A-A693-1F5E2D4375CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChargingCarbinet.UnitTests", "ChargingCarbinet.Test\ChargingCarbinet.UnitTests.csproj", "{8491A3CB-1223-440A-A693-1F5E2D4375CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChargingCabinet", "ChargingCabinet1\ChargingCabinet.csproj", "{F083E356-C52D-4DE0-AAB9-57BFCCBB7F50}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{8491A3CB-1223-440A-A693-1F5E2D4375CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8491A3CB-1223-440A-A693-1F5E2D4375CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8491A3CB-1223-440A-A693-1F5E2D4375CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F083E356-C52D-4DE0-AAB9-57BFCCBB7F50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F083E356-C52D-4DE0-AAB9-57BFCCBB7F50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F083E356-C52D-4DE0-AAB9-57BFCCBB7F50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F083E356-C52D-4DE0-AAB9-57BFCCBB7F50}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
