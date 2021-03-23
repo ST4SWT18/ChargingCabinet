@@ -105,7 +105,6 @@ namespace UsbSimulator.Simulators
 
         public void StopCharge()
         {
-            Console.WriteLine("Stopped charging");
             _timer.Stop();
 
             CurrentValue = 0.0;
