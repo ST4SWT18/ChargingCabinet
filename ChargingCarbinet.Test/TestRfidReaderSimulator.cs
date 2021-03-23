@@ -8,7 +8,7 @@ namespace ChargingCarbinet.Test
     public class Tests
     {
         private IStationControl _stationControl;
-        private IRfidReaderSimulator _uut;
+        private RfidReaderSimulator _uut;
         [SetUp]
         public void Setup()
         {
