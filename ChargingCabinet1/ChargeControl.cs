@@ -30,18 +30,22 @@ namespace ChargingCabinet
             {
 
             }
-            if (CurrentCurrent > 0 && CurrentCurrent <= 5)
+            else if (CurrentCurrent > 0 && CurrentCurrent <= 5)
             {
                 _displaySimulator.ShowFullyChargedMessage();
             }
-            if (CurrentCurrent > 5 && CurrentCurrent <= 500)
+            else if (CurrentCurrent > 5 && CurrentCurrent <= 500)
             {
                 _displaySimulator.ShowCurrentlyChargingMessage();
             }
-            if (CurrentCurrent > 500)
+            else if (CurrentCurrent > 500)
             {
                 _displaySimulator.ShowCurrentErrorMessage();
                 StopCharge();
+            }
+            else
+            {
+                throw new ArgumentException("Index is out of range");
             }
         }
 
