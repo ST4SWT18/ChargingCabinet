@@ -76,21 +76,34 @@ namespace ChargingCarbinet.UnitTests
         [Test]
         public void DoorCloseEventArgs_IsNull()
         {
-            Assert.That(_doorCloseEventArgs, Is.Null);
+            Assert.That(_doorCloseEventArgs, Is.Null); 
         }
 
         [Test]
         public void OnDoorOpen_DoorOpenEventArgs_IsNotNull()
         {
             _uut.OnDoorOpen();
-            Assert.That(_doorOpenEventArgs, Is.Not.Null);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(_doorOpenEventArgs, Is.Not.Null);
+                Assert.That(_doorOpenEventArgs.DoorOpened, Is.EqualTo(true)); //TODO Skal den her ikke være true?
+                Assert.That(_doorCloseEventArgs, Is.Null);
+            });
         }
 
         [Test]
         public void OnDoorClose_DoorCloseEventArgs_IsNotNull()
         {
             _uut.OnDoorClose();
-            Assert.That(_doorCloseEventArgs, Is.Not.Null);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(_doorCloseEventArgs, Is.Not.Null);
+                Assert.That(_doorCloseEventArgs.DoorClosed, Is.EqualTo(true));
+                Assert.That(_doorOpenEventArgs, Is.Null);
+            });
+
         }
 
         [Test]

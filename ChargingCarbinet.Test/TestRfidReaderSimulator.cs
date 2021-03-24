@@ -49,6 +49,7 @@ namespace ChargingCarbinet.Test
         {
             _uut.OnRfidRead(1);
             Assert.That(_rfidDetectedEventArgs, Is.Not.Null);
+            //TODO Tjek at eventt indeholder 1
         }
 
     }
