@@ -8,7 +8,7 @@ using NUnit.Framework.Interfaces;
 
 namespace ChargingCarbinet.UnitTests
 {
-    public class TestLogFileSimulatorLocked
+    public class TestLogFileSimulator
     {
         private LogFileSimulator _uut;
 
@@ -22,9 +22,18 @@ namespace ChargingCarbinet.UnitTests
         public void LogDoorLocked_WritesToFileWithID_LengthIsLargerThanOne(int id)
         {
             _uut.LogDoorLocked(id);
-            var fileText = File.ReadLines("logfile.txt");
+            var fileText = File.ReadLines("logfile1.txt");
             Assert.IsTrue(fileText.ToString().Length > 1);
             
+        }
+
+        [TestCase(50)]
+        public void Test2(int id)
+        {
+            var Id = id;
+            _uut.LogDoorUnlocked(Id);
+            var fileText = File.ReadLines("logfile2.txt");
+            Assert.IsTrue(fileText.ToString().Length > 1);
         }
     }
 }
