@@ -19,4 +19,8 @@
     <ProjectReference Include="..\ChargingCabinet\ChargingCabinet.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="bin\Debug\netcoreapp3.1\" />
+  </ItemGroup>
+
 </Project>

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 using ChargingCabinet.Interfaces;
 using NUnit.Framework;
-using NUnit.Framework.Interfaces;
 
 namespace ChargingCarbinet.UnitTests
 {
-    public class TestLogFileSimulatorLocked
+    public class TestLogFileSimulatorUnlocked
     {
         private LogFileSimulator _uut;
 
@@ -19,12 +15,12 @@ namespace ChargingCarbinet.UnitTests
         }
 
         [TestCase(50)]
-        public void LogDoorLocked_WritesToFileWithID_LengthIsLargerThanOne(int id)
+        public void Test2(int id)
         {
-            _uut.LogDoorLocked(id);
+            var Id = id;
+            _uut.LogDoorUnlocked(Id);
             var fileText = File.ReadLines("logfile.txt");
             Assert.IsTrue(fileText.ToString().Length > 1);
-            
         }
     }
 }
