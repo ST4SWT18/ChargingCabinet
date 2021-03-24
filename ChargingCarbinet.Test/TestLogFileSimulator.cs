@@ -18,12 +18,12 @@ namespace ChargingCarbinet.UnitTests
             _uut = new LogFileSimulator();
         }
 
-        [TestCase(50, 2)]
-        public void LogDoorLocked_WritesToFileWithID_LengthIsLargerThanOne(int id, int numberOfNumbers)
+        [TestCase(50)]
+        public void LogDoorLocked_WritesToFileWithID_LengthIsLargerThanOne(int id)
         {
             _uut.LogDoorLocked(id);
             var fileText = File.ReadLines("logfile.txt");
-            Assert.IsTrue(fileText.ToString().Length >= numberOfNumbers);
+            Assert.IsTrue(fileText.ToString().Length > 1);
             
         }
     }
