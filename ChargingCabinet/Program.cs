@@ -22,7 +22,7 @@ namespace ChargingCabinet.Application
             do
             {
                 string input;
-                System.Console.WriteLine("Indtast E, O, C, R: ");
+                System.Console.WriteLine("Indtast E, O, C, R, T: ");
                 input = Console.ReadLine().ToString().ToLower();
                 if (string.IsNullOrEmpty(input)) continue;
 
@@ -34,6 +34,10 @@ namespace ChargingCabinet.Application
 
                     case 'o':
                         door.OnDoorOpen();
+                        Console.WriteLine("Tryk T");
+                        break;
+                    case 't':
+                        usb.SimulateConnected(true);
                         break;
 
                     case 'c':
