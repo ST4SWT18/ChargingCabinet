@@ -50,15 +50,13 @@ namespace ChargingCarbinet.UnitTests
             _displaySimulator.Received(1).ShowRfidErrorMessage();
         }
 
-        // Grænseværdier der skal kalde ShowFullyChargedMessage
-        //[TestCase(0.0001)]
-        //[TestCase(2.5)]
-        //[TestCase(5)]
-        //public void CheckIf_ShowFullyChargedMessage_IsCalled_WhenCurrentCurrentIsHigherThan0AndEqualToOrLessThan5(double currentCurrent)
-        //{
-        //    _uut. += Raise.EventWith(new CurrentEventArgs() { Current = _uut.CurrentCurrent });
-        //    _displaySimulator.Received(1).ShowFullyChargedMessage();
+        // Eventhandler der skal kalde metoden ShowConnectPhoneMessage
+        [TestCase(0.0001)]
+        public void CheckIf_ShowFullyChargedMessage_IsCalled_WhenCurrentCurrentIsHigherThan0AndEqualToOrLessThan5(double currentCurrent)
+        {
+            _uut. += Raise.EventWith(new CurrentEventArgs() { Current = _uut.CurrentCurrent });
+            _displaySimulator.Received(1).ShowFullyChargedMessage();
 
-        //}
+        }
     }
 }
