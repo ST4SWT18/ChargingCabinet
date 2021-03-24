@@ -25,6 +25,20 @@ namespace ChargingCarbinet.Test
         }
 
         [Test]
+        public void RFIDDetectedValue_IsZero_ByDefault()
+        {
+            Assert.That(_uut.RFIDDetectedValue, Is.Zero);
+        }
+
+        [TestCase(5, 4)]
+        public void RFIDDetectedValue_IsUpdated_WhenIDIsRead_FromUserInput(int oldId, int newId)
+        {
+            _uut.RFIDDetectedValue = oldId;
+            _uut.OnRfidRead(newId);
+            Assert.That(_uut.RFIDDetectedValue, Is.EqualTo(newId));
+        }
+
+        [Test]
         public void OnRfidRead_RFIDDetectedEventArgs_IsNull()
         {
             Assert.That(_rfidDetectedEventArgs, Is.Null);
