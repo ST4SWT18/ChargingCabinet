@@ -14,13 +14,13 @@ namespace ChargingCarbinet.UnitTests
             _uut = new LogFileSimulator();
         }
 
-        [TestCase(50)]
-        public void Test2(int id)
-        {
-            var Id = id;
-            _uut.LogDoorUnlocked(Id);
-            var fileText = File.ReadLines("logfile.txt");
-            Assert.IsTrue(fileText.ToString().Length > 1);
-        }
+        //[TestCase(50)]
+        //public void Test2(int id)
+        //{
+        //    var Id = id;
+        //    _uut.LogDoorUnlocked(Id);
+        //    var fileText = File.ReadLines("logfile.txt");
+        //    Assert.IsTrue(fileText.ToString().Length > 1);
+        //}
     }
 }
