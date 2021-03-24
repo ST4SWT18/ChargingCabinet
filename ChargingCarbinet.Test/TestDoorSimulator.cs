@@ -93,6 +93,22 @@ namespace ChargingCarbinet.UnitTests
             Assert.That(_doorCloseEventArgs, Is.Not.Null);
         }
 
+        [Test]
+        public void OnDoorOpen_DoorOpenedValue_IsEqualTo_DoorOpened()
+        {
+            var newBool = _uut.DoorOpenedValue;
+            _uut.OnDoorOpen();
+            Assert.That(_doorOpenEventArgs.DoorOpened, Is.EqualTo(newBool));
+        }
+
+        [Test]
+        public void OnDoorClosed_DoorClosedValue_IsEqualTo_DoorClosed()
+        {
+            var newBool = _uut.DoorClosedValue;
+            _uut.OnDoorClose();
+            Assert.That(_doorCloseEventArgs.DoorClosed, Is.EqualTo(newBool));
+        }
+
         [TestCase(false)]
         //[TestCase(true)] virker sgu ikke med true, ved ikke hvorfor endnu
         //fordi dooropenedvalue er false by default i think
