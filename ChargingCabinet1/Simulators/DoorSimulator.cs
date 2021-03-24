@@ -31,12 +31,12 @@ namespace ChargingCabinet
         }
 
         //Notify
-        public void OnDoorOpen()
+        private void OnDoorOpen()
         {
             DoorOpenEvent?.Invoke(this, new DoorOpenEventArgs() {DoorOpened = DoorOpenedValue});
         }
 
-        public void OnDoorClose()
+        private void OnDoorClose()
         {
             DoorCloseEvent?.Invoke(this, new DoorCloseEventArgs() {DoorClosed = DoorClosedValue});
         }

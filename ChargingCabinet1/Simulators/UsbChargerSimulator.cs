@@ -23,7 +23,7 @@ namespace ChargingCabinet.Simulators
 
         private bool _overload;
         private bool _charging;
-        private System.Timers.Timer _timer;
+        private Timer _timer;
         private int _ticksSinceStart;
 
         public UsbChargerSimulator()
@@ -115,7 +115,7 @@ namespace ChargingCabinet.Simulators
 
         private void OnNewCurrent()
         {
-            CurrentValueEvent?.Invoke(this, new CurrentEventArgs() {Current = this.CurrentValue});
+            CurrentValueEvent?.Invoke(this, new CurrentEventArgs() {Current = CurrentValue});
         }
     }
 }
