@@ -51,12 +51,94 @@ namespace ChargingCarbinet.UnitTests
         }
 
         // Eventhandler der skal kalde metoden ShowConnectPhoneMessage
-        [TestCase(0.0001)]
-        public void CheckIf_ShowFullyChargedMessage_IsCalled_WhenCurrentCurrentIsHigherThan0AndEqualToOrLessThan5(double currentCurrent)
+        [Test]
+        public void CheckIf_ShowConnectPhoneMessage_IsCalled_WhenDoorOpenEventIsTriggered()
         {
-            _uut. += Raise.EventWith(new CurrentEventArgs() { Current = _uut.CurrentCurrent });
-            _displaySimulator.Received(1).ShowFullyChargedMessage();
+
+            _doorSimulator.DoorOpenEvent += Raise.EventWith(new DoorOpenEventArgs());
+
+            _displaySimulator.Received(1).ShowConnectPhoneMessage();
+
+        }        
+        
+        // Eventhandler der skal kalde metoden ShowReadRfidMessage
+        [Test]
+        public void CheckIf_ShowReadRfidMessage_IsCalled_WhenDoorCloseEventIsTriggered()
+        {
+
+            _doorSimulator.DoorCloseEvent += Raise.EventWith(new DoorCloseEventArgs());
+
+            _displaySimulator.Received(1).ShowReadRfidMessage();
 
         }
+
+        // ladeskabet er ledigt og lader er tilsluttet
+        [Test]
+        public void CheckIf_BehaviorIsRight_WhenLadeskabStateIsAvailable_AndChargerIsConnected()
+        {
+            int rfidDetected = 123;
+            _uut.State = StationControl.LadeskabState.Available;
+            _chargeControl.IsConnected().Returns(true);
+
+            _rfidReaderSimulator.RFIDDetectedEvent += Raise.EventWith(new RFIDDetectedEventArgs(){RFIDDetected = rfidDetected});
+            
+            _doorSimulator.Received(1).LockDoor();
+            _chargeControl.Received(1).StartCharge();
+            _logFileSimulator.Received(1).LogDoorLocked(rfidDetected);
+            _displaySimulator.Received(1).ShowPhoneChargingMessage();
+            Assert.That(_uut.State, Is.EqualTo(StationControl.LadeskabState.Locked));
+
+        }
+
+
+        // ladeskabet er ledigt men lader er IKKE tilsluttet
+        [Test]
+        public void CheckIf_BehaviorIsRight_WhenLadeskabStateIsAvailable_AndChargerIsNotConnected()
+        {
+            int rfidDetected = 123;
+            _uut.State = StationControl.LadeskabState.Available;
+            _chargeControl.IsConnected().Returns(false);
+
+            _rfidReaderSimulator.RFIDDetectedEvent += Raise.EventWith(new RFIDDetectedEventArgs(){RFIDDetected = rfidDetected});
+            
+            _doorSimulator.DidNotReceive().LockDoor();
+            _chargeControl.DidNotReceive().StartCharge();
+            _logFileSimulator.DidNotReceive().LogDoorLocked(rfidDetected);
+            _displaySimulator.Received(1).ShowConnectionErrorMessage();
+            Assert.That(_uut.State, Is.EqualTo(StationControl.LadeskabState.Available));
+        }        
+        
+        // Ladeskabet er åbent 
+        [Test]
+        public void CheckIf_BehaviorIsRight_WhenLadeskabStateIsDoorOpen()
+        {
+            int rfidDetected = 123;
+            _uut.State = StationControl.LadeskabState.DoorOpen;
+
+            _rfidReaderSimulator.RFIDDetectedEvent += Raise.EventWith(new RFIDDetectedEventArgs(){RFIDDetected = rfidDetected});
+            
+            _doorSimulator.DidNotReceive().LockDoor();
+            _chargeControl.DidNotReceive().StartCharge();
+            _logFileSimulator.DidNotReceive().LogDoorLocked(rfidDetected);
+            _displaySimulator.DidNotReceive().ShowConnectionErrorMessage();
+            Assert.That(_uut.State, Is.EqualTo(StationControl.LadeskabState.DoorOpen));
+        }        
+        
+        //// Ladeskabet er låst 
+        //[Test]
+        //public void CheckIf_BehaviorIsRight_WhenLadeskabStateIsLocked()
+        //{
+        //    int rfidDetected = 123;
+        //    _uut.State = StationControl.LadeskabState.Locked;
+
+        //    _rfidReaderSimulator.RFIDDetectedEvent += Raise.EventWith(new RFIDDetectedEventArgs(){RFIDDetected = rfidDetected});
+            
+        //    _doorSimulator.DidNotReceive().LockDoor();
+        //    _chargeControl.DidNotReceive().StartCharge();
+        //    _logFileSimulator.DidNotReceive().LogDoorLocked(rfidDetected);
+        //    _displaySimulator.DidNotReceive().ShowConnectionErrorMessage();
+        //    _uut.Received(1).CheckId(_uut.OldId, rfidDetected);
+
+        //}
     }
 }
