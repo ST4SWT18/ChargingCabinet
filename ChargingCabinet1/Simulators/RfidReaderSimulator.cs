@@ -9,10 +9,6 @@ namespace ChargingCabinet.Simulators
         public event EventHandler<RFIDDetectedEventArgs> RFIDDetectedEvent;
         public int RFIDDetectedValue { get; set; }
 
-        public RfidReaderSimulator()
-        {
-        }
-
         public void OnRfidRead(int id)
         {
             RFIDDetectedValue = id;

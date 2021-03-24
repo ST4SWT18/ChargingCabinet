@@ -25,5 +25,28 @@ namespace ChargingCarbinet.UnitTests
             _uut = new StationControl(_doorSimulator, _chargeControl, _displaySimulator, _logFileSimulator);
         }
 
+        [TestCase(25, 25)]
+        public void Test1(int oldId, int id)
+        {
+            Assert.That(oldId, Is.EqualTo(id));
+        }
+
+        [TestCase(25, 25)]
+        public void Test2(int oldId, int id)
+        {
+            _uut.CheckId(oldId, id);
+            _chargeControl.Received(1).StopCharge();
+            _doorSimulator.Received(1).UnlockDoor();
+            _logFileSimulator.Received(1).LogDoorUnlocked(id);
+            _displaySimulator.Received(1).ShowTakePhoneAndCloseDoorMessage();
+        }
+
+        [TestCase(25, 30)]
+        public void Test3(int oldId, int id)
+        {
+            _uut.CheckId(oldId, id);
+            _displaySimulator.Received(1).ShowRfidErrorMessage();
+        }
+
     }
 }
