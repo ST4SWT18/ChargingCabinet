@@ -122,23 +122,24 @@ namespace ChargingCarbinet.UnitTests
             _logFileSimulator.DidNotReceive().LogDoorLocked(rfidDetected);
             _displaySimulator.DidNotReceive().ShowConnectionErrorMessage();
             Assert.That(_uut.State, Is.EqualTo(StationControl.LadeskabState.DoorOpen));
-        }        
-        
-        //// Ladeskabet er låst 
-        //[Test]
-        //public void CheckIf_BehaviorIsRight_WhenLadeskabStateIsLocked()
-        //{
-        //    int rfidDetected = 123;
-        //    _uut.State = StationControl.LadeskabState.Locked;
+        }
 
-        //    _rfidReaderSimulator.RFIDDetectedEvent += Raise.EventWith(new RFIDDetectedEventArgs(){RFIDDetected = rfidDetected});
-            
-        //    _doorSimulator.DidNotReceive().LockDoor();
-        //    _chargeControl.DidNotReceive().StartCharge();
-        //    _logFileSimulator.DidNotReceive().LogDoorLocked(rfidDetected);
-        //    _displaySimulator.DidNotReceive().ShowConnectionErrorMessage();
-        //    _uut.Received(1).CheckId(_uut.OldId, rfidDetected);
+        // Hvordan tester jeg at CheckId bliver kaldt i uut, når jeg ikke bruger en substitute.for?????
+        // Ladeskabet er låst 
+        [Test]
+        public void CheckIf_BehaviorIsRight_WhenLadeskabStateIsLocked()
+        {
+            int rfidDetected = 123;
+            _uut.State = StationControl.LadeskabState.Locked;
 
-        //}
+            _rfidReaderSimulator.RFIDDetectedEvent += Raise.EventWith(new RFIDDetectedEventArgs() { RFIDDetected = rfidDetected });
+
+            _doorSimulator.DidNotReceive().LockDoor();
+            _chargeControl.DidNotReceive().StartCharge();
+            _logFileSimulator.DidNotReceive().LogDoorLocked(rfidDetected);
+            _displaySimulator.DidNotReceive().ShowConnectionErrorMessage();
+            //_uut.Received(1).CheckId(_uut.OldId, rfidDetected);
+
+        }
     }
 }
