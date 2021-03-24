@@ -51,7 +51,7 @@ namespace ChargingCabinet
                     {
                         _door.LockDoor();
                         _charger.StartCharge();
-                        //_oldId = id;
+                        _oldId = id;
                         _logFileSimulator.LogDoorLocked(id);
 
                         _displaySimulator.ShowPhoneChargingMessage();
