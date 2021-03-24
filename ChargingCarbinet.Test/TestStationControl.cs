@@ -13,6 +13,7 @@ namespace ChargingCarbinet.UnitTests
         private IChargeControl _chargeControl;
         private IDisplaySimulator _displaySimulator;
         private ILogFileSimulator _logFileSimulator;
+        private IRfidReaderSimulator _rfidReaderSimulator;
         private StationControl _uut;
 
         [SetUp]
@@ -22,7 +23,8 @@ namespace ChargingCarbinet.UnitTests
             _chargeControl = Substitute.For<IChargeControl>();
             _displaySimulator = Substitute.For<IDisplaySimulator>();
             _logFileSimulator = Substitute.For<ILogFileSimulator>();
-            _uut = new StationControl(_doorSimulator, _chargeControl, _displaySimulator, _logFileSimulator);
+            _rfidReaderSimulator = Substitute.For<IRfidReaderSimulator>();
+            _uut = new StationControl(_doorSimulator, _chargeControl, _displaySimulator, _logFileSimulator, _rfidReaderSimulator);
         }
 
         [TestCase(25, 25)]
@@ -48,5 +50,15 @@ namespace ChargingCarbinet.UnitTests
             _displaySimulator.Received(1).ShowRfidErrorMessage();
         }
 
+        // Grænseværdier der skal kalde ShowFullyChargedMessage
+        //[TestCase(0.0001)]
+        //[TestCase(2.5)]
+        //[TestCase(5)]
+        //public void CheckIf_ShowFullyChargedMessage_IsCalled_WhenCurrentCurrentIsHigherThan0AndEqualToOrLessThan5(double currentCurrent)
+        //{
+        //    _uut. += Raise.EventWith(new CurrentEventArgs() { Current = _uut.CurrentCurrent });
+        //    _displaySimulator.Received(1).ShowFullyChargedMessage();
+
+        //}
     }
 }

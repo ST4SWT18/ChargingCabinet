@@ -23,25 +23,27 @@ namespace ChargingCabinet
         private ILogFileSimulator _logFileSimulator;
         private int _oldId;
         private IDoorSimulator _door;
+        private IRfidReaderSimulator _rfidReaderSimulator;
         
 
         public StationControl(IDoorSimulator door, 
             IChargeControl chargeControl, 
             IDisplaySimulator displaySimulator, 
-            ILogFileSimulator logFileSimulator)
+            ILogFileSimulator logFileSimulator, IRfidReaderSimulator rfidReaderSimulator)
         {
             _door = door;
             _charger = chargeControl;
             _displaySimulator = displaySimulator;
             _logFileSimulator = logFileSimulator;
+            _rfidReaderSimulator = rfidReaderSimulator;
 
             _door.DoorOpenEvent += DoorOpened;
             _door.DoorCloseEvent += DoorClosed;
-            RfidDetected(_oldId);
+            _rfidReaderSimulator.RFIDDetectedEvent += RfidDetected;
         }
 
         // Eksempel på event handler for eventet "RFID Detected" fra tilstandsdiagrammet for klassen
-        private void RfidDetected(int id)
+        private void RfidDetected(object sender, RFIDDetectedEventArgs e)
         {
             switch (_state)
             {
@@ -51,8 +53,8 @@ namespace ChargingCabinet
                     {
                         _door.LockDoor();
                         _charger.StartCharge();
-                        //_oldId = id;
-                        _logFileSimulator.LogDoorLocked(id);
+                        _oldId = e.RFIDDetected;
+                        _logFileSimulator.LogDoorLocked(e.RFIDDetected);
 
                         _displaySimulator.ShowPhoneChargingMessage();
                         _state = LadeskabState.Locked;
@@ -70,7 +72,7 @@ namespace ChargingCabinet
 
                 case LadeskabState.Locked:
                     // Check for correct ID
-                    CheckId(_oldId, id);
+                    CheckId(_oldId, e.RFIDDetected);
 
                     break;
             }
