@@ -94,11 +94,19 @@ namespace ChargingCarbinet.UnitTests
         }
 
         [Test]
-        public void test()
+        public void OnDoorOpen_DoorOpenedValue_IsEqualTo_DoorOpened()
         {
             var newBool = _uut.DoorOpenedValue;
             _uut.OnDoorOpen();
             Assert.That(_doorOpenEventArgs.DoorOpened, Is.EqualTo(newBool));
+        }
+
+        [Test]
+        public void OnDoorClosed_DoorClosedValue_IsEqualTo_DoorClosed()
+        {
+            var newBool = _uut.DoorClosedValue;
+            _uut.OnDoorClose();
+            Assert.That(_doorCloseEventArgs.DoorClosed, Is.EqualTo(newBool));
         }
 
         [TestCase(false)]
