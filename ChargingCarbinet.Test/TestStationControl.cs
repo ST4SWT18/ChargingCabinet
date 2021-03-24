@@ -28,13 +28,14 @@ namespace ChargingCarbinet.UnitTests
         }
 
         [TestCase(25, 25)]
-        public void Test1(int oldId, int id)
+        public void CheckIf_OldId_IsEqualToId(int oldId, int id)
         {
             Assert.That(oldId, Is.EqualTo(id));
         }
 
+        //Old ID og new ID er ens
         [TestCase(25, 25)]
-        public void Test2(int oldId, int id)
+        public void CheckIf_BehaviorIsRight_WhenOldId_IsEqualToNewId(int oldId, int id)
         {
             _uut.CheckId(oldId, id);
             _chargeControl.Received(1).StopCharge();
@@ -43,8 +44,9 @@ namespace ChargingCarbinet.UnitTests
             _displaySimulator.Received(1).ShowTakePhoneAndCloseDoorMessage();
         }
 
+        //Old ID og new ID er forskellige
         [TestCase(25, 30)]
-        public void Test3(int oldId, int id)
+        public void CheckIf_ShowRfidErrorMessage_IsCalled_WhenOldIdAndId_IsDifferent(int oldId, int id)
         {
             _uut.CheckId(oldId, id);
             _displaySimulator.Received(1).ShowRfidErrorMessage();
