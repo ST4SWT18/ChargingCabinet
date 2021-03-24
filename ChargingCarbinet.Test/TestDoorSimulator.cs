@@ -82,12 +82,12 @@ namespace ChargingCarbinet.UnitTests
         [Test]
         public void OnDoorOpen_DoorOpenEventArgs_IsNotNull()
         {
-            _uut.OnDoorOpen();
+            _uut.OnDoorOpen(true);
 
             Assert.Multiple(() =>
             {
                 Assert.That(_doorOpenEventArgs, Is.Not.Null);
-                Assert.That(_doorOpenEventArgs.DoorOpened, Is.EqualTo(true)); //TODO Skal den her ikke være true?
+                Assert.That(_doorOpenEventArgs.DoorOpened, Is.EqualTo(true)); 
                 Assert.That(_doorCloseEventArgs, Is.Null);
             });
         }
@@ -95,7 +95,7 @@ namespace ChargingCarbinet.UnitTests
         [Test]
         public void OnDoorClose_DoorCloseEventArgs_IsNotNull()
         {
-            _uut.OnDoorClose();
+            _uut.OnDoorClose(true);
 
             Assert.Multiple(() =>
             {
@@ -110,7 +110,7 @@ namespace ChargingCarbinet.UnitTests
         public void OnDoorOpen_DoorOpenedValue_IsEqualTo_DoorOpened()
         {
             var newBool = _uut.DoorOpenedValue;
-            _uut.OnDoorOpen();
+            _uut.OnDoorOpen(newBool);
             Assert.That(_doorOpenEventArgs.DoorOpened, Is.EqualTo(newBool));
         }
 
@@ -118,13 +118,12 @@ namespace ChargingCarbinet.UnitTests
         public void OnDoorClosed_DoorClosedValue_IsEqualTo_DoorClosed()
         {
             var newBool = _uut.DoorClosedValue;
-            _uut.OnDoorClose();
+            _uut.OnDoorClose(newBool);
             Assert.That(_doorCloseEventArgs.DoorClosed, Is.EqualTo(newBool));
+
         }
 
         [TestCase(false)]
-        //[TestCase(true)] virker sgu ikke med true, ved ikke hvorfor endnu
-        //fordi dooropenedvalue er false by default i think
         public void DoorOpenedValue_IsEqualTo_Argument(bool newBool)
         {
             _uut.DoorOpenEvent += Raise.EventWith(new DoorOpenEventArgs() { DoorOpened = newBool });

@@ -51,7 +51,6 @@ namespace ChargingCarbinet.Test
             Assert.Multiple(() =>
             {
                 Assert.That(_rfidDetectedEventArgs, Is.Not.Null);
-                //TODO Tjek at eventt indeholder 1
                 Assert.That(_rfidDetectedEventArgs.RFIDDetected, Is.EqualTo(1));
             });
 

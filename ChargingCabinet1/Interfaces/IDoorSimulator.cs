@@ -11,7 +11,7 @@ namespace ChargingCabinet.Interfaces
         public bool DoorClosedValue { get; set; }
         public void LockDoor();
         public void UnlockDoor();
-        void OnDoorOpen();
-        void OnDoorClose();
+        void OnDoorOpen(bool doorOpen);
+        void OnDoorClose(bool doorClose);
     }
 }

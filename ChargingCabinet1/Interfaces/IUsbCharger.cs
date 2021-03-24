@@ -21,5 +21,7 @@ namespace ChargingCabinet.Interfaces
 
         // Stop charging
         void StopCharge();
+
+        void SimulateOverload(bool overload);
     }
 }

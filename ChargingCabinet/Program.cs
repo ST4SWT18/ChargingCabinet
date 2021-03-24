@@ -33,7 +33,7 @@ namespace ChargingCabinet.Application
                         break;
 
                     case 'o':
-                        door.OnDoorOpen();
+                        door.OnDoorOpen(true);
                         Console.WriteLine("Tryk T");
                         break;
                     case 't':
@@ -41,7 +41,7 @@ namespace ChargingCabinet.Application
                         break;
 
                     case 'c':
-                        door.OnDoorClose();
+                        door.OnDoorClose(true);
                         break;
 
                     case 'r':
