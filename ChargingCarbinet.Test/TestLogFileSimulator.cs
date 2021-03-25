@@ -27,16 +27,22 @@ namespace ChargingCarbinet.UnitTests
             System.Console.SetOut(_output);
         }
 
+        [TestCase(1)]
         [TestCase(50)]
-        public void LogDoorLocked_WritesToFileWithID_LengthIsLargerThanOne(int id)
+        [TestCase(1000)]
+        public void LogDoorLocked_CallsWriteLineLocked(int id)
         {
-
+            _uut.LogDoorLocked(id);
+            _write.Received(1).WriteLineLocked(id);
         }
 
+        [TestCase(1)]
         [TestCase(50)]
-        public void LogDoorUnlocked_WritesToFileWithID_LengthIsLargerThanOne(int id)
+        [TestCase(1000)]
+        public void LogDoorUnlocked_CallsWriteLineUnlocked(int id)
         {
-            
+            _uut.LogDoorUnlocked(id);
+            _write.Received(1).WriteLineUnlocked(id);
         }
     }
 }

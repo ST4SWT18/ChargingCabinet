@@ -7,12 +7,12 @@ namespace ChargingCabinet.Simulators
     {
         public void WriteLineLocked(int Id)
         {
-            Console.WriteLine(DateTime.Now + ": Skab låst med RFID: {0}", Id);
+            Console.WriteLine(DateTime.Now + ": Skab låst med RFID: " + Id);
         }
 
         public void WriteLineUnlocked(int Id)
         {
-            Console.WriteLine(DateTime.Now + ": Skab låst op med RFID: {0}", Id);
+            Console.WriteLine(DateTime.Now + ": Skab låst op med RFID: " + Id);
         }
     }
 }

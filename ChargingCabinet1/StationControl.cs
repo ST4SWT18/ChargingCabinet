@@ -24,8 +24,6 @@ namespace ChargingCabinet
 
         public int OldId { get; set; }
         public LadeskabState State { get; set; }
-        
-
 
 
         public StationControl(IDoorSimulator door, 
@@ -38,6 +36,8 @@ namespace ChargingCabinet
             _displaySimulator = displaySimulator;
             _logFileSimulator = logFileSimulator;
             _rfidReaderSimulator = rfidReaderSimulator;
+
+            State = LadeskabState.Available;
 
             _door.DoorOpenEvent += DoorOpened;
             _door.DoorCloseEvent += DoorClosed;
@@ -89,7 +89,7 @@ namespace ChargingCabinet
             _displaySimulator.ShowReadRfidMessage();
         }
 
-        public void CheckId(int OldId, int Id)
+        private void CheckId(int OldId, int Id)
         {
             if (Id == OldId)
             {
