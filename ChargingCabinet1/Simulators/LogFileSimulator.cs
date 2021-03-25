@@ -1,27 +1,31 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using ChargingCabinet.Simulators;
 
 namespace ChargingCabinet.Interfaces
 {
     public class LogFileSimulator : ILogFileSimulator
     {
-        private string logFile1 = "logfile1.txt"; // Navnet på systemets log-fil
-        private string logFile2 = "logfile2.txt"; // Navnet på systemets log-fil
+        private string _logFile = "logfile.txt"; // Navnet på systemets log-fil
+        private IWriteSimulator _write;
+
+        public LogFileSimulator(IWriteSimulator write)
+        {
+            _write = write;
+        }
 
         public void LogDoorLocked(int Id)
         {
-            using (var writer = File.AppendText(logFile1))
+            using (var writer = File.AppendText(_logFile))
             {
-                writer.WriteLine(DateTime.Now + ": Skab låst med RFID: {0}", Id);
+                _write.WriteLineLocked(Id);
             }
         }
 
         public void LogDoorUnlocked(int Id)
         {
-            using (var writer = File.AppendText(logFile2))
+            using (var writer = File.AppendText(_logFile))
             {
-                writer.WriteLine(DateTime.Now + ": Skab låst op med RFID: {0}", Id);
+                _write.WriteLineUnlocked(Id);
             }
         }
     }

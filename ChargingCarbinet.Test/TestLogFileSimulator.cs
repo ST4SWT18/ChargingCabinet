@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using ChargingCabinet.Events;
 using ChargingCabinet.Interfaces;
+using NSubstitute;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 
@@ -11,29 +12,29 @@ namespace ChargingCarbinet.UnitTests
     public class TestLogFileSimulator
     {
         private LogFileSimulator _uut;
+        private IWriteSimulator _write;
+        private StringWriter _output;
 
         [SetUp]
         public void Setup()
         {
-            _uut = new LogFileSimulator();
+            _write = Substitute.For<IWriteSimulator>();
+            _uut = new LogFileSimulator(_write);
+
+            _output = new StringWriter();
+            System.Console.SetOut(_output);
         }
 
         [TestCase(50)]
         public void LogDoorLocked_WritesToFileWithID_LengthIsLargerThanOne(int id)
         {
-            _uut.LogDoorLocked(id);
-            var fileText = File.ReadLines("logfile1.txt");
-            Assert.IsTrue(fileText.ToString().Length > 1);
-            
+
         }
 
         [TestCase(50)]
-        public void Test2(int id)
+        public void LogDoorUnlocked_WritesToFileWithID_LengthIsLargerThanOne(int id)
         {
-            var Id = id;
-            _uut.LogDoorUnlocked(Id);
-            var fileText = File.ReadLines("logfile2.txt");
-            Assert.IsTrue(fileText.ToString().Length > 1);
+            
         }
     }
 }
