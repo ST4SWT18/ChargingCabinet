@@ -11,6 +11,8 @@ namespace ChargingCarbinet.UnitTests
 {
     public class TestLogFileSimulator
     {
+        //UDKAST TIL TEST AF LOGFILESIMULATOR - FORKLARING FINDES I RAPPORT
+
         private LogFileSimulator _uut;
         private IWriteSimulator _write;
         private StringWriter _output;
