@@ -125,6 +125,7 @@ namespace ChargingCarbinet.UnitTests
             _displaySimulator.DidNotReceive().ShowCurrentlyChargingMessage();
         }
 
+        // tjek også på StopCharge (spørg frank)
         // Grænseværdier der skal kalde ShowCurrentErrorMessage
         [TestCase(500.0001)]
         [TestCase(700)]
@@ -133,6 +134,7 @@ namespace ChargingCarbinet.UnitTests
             _uut.CurrentCurrent = 600;
             _usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs() { Current = _uut.CurrentCurrent });
             _displaySimulator.Received(1).ShowCurrentErrorMessage();
+            _usbCharger.Received(1).SimulateOverload(true);
         }
 
         // Grænseværdi der IKKE skal kalde ShowCurrentErrorMessage
