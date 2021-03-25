@@ -6,7 +6,7 @@ using ChargingCabinet.Simulators;
 
 namespace ChargingCabinet
 {
-    public class StationControl : IStationControl
+    public class StationControl
     {
         // Enum med tilstande ("states") svarende til tilstandsdiagrammet for klassen
         public enum LadeskabState
@@ -25,8 +25,6 @@ namespace ChargingCabinet
 
         public int OldId { get; set; }
         public LadeskabState State { get; set; }
-        
-
 
 
         public StationControl(IDoorSimulator door, 
