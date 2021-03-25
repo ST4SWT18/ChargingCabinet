@@ -91,7 +91,7 @@ namespace ChargingCabinet
             _displaySimulator.ShowReadRfidMessage();
         }
 
-        public void CheckId(int OldId, int Id)
+        private void CheckId(int OldId, int Id)
         {
             if (Id == OldId)
             {

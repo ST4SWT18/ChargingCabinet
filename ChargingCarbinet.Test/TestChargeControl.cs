@@ -14,6 +14,10 @@ namespace ChargingCarbinet.UnitTests
     {
         private IDisplaySimulator _displaySimulator;
         private IUsbCharger _usbCharger;
+
+        //Må man det her når ChargeControl ikke rigtigt kender RfidReaderSimulator?
+        private IRfidReaderSimulator _rfidReaderSimulator;
+
         private ChargeControl _uut;
         private StringWriter _output;
 
@@ -22,6 +26,7 @@ namespace ChargingCarbinet.UnitTests
         {
             _displaySimulator = Substitute.For<IDisplaySimulator>();
             _usbCharger = Substitute.For<IUsbCharger>();
+            _rfidReaderSimulator = Substitute.For<IRfidReaderSimulator>();
             _uut = new ChargeControl(_displaySimulator, _usbCharger);
 
             _output = new StringWriter();
@@ -47,14 +52,19 @@ namespace ChargingCarbinet.UnitTests
         [Test]
         public void CheckIf_StartCharge_CallsStartCharge()
         {
-            _uut.StartCharge();
+            int rfidDetected = 123;
+            _rfidReaderSimulator.RFIDDetectedEvent += Raise.EventWith(new RFIDDetectedEventArgs() { RFIDDetected = rfidDetected });
+
             _usbCharger.Received(1).StartCharge();
         }
 
         [Test]
         public void CheckIf_StopCharge_CallsStopCharge()
         {
-            _uut.StopCharge();
+            _uut.CurrentCurrent = 600;
+
+            _usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs() { Current = _uut.CurrentCurrent });
+
             _usbCharger.Received(1).StopCharge();
         }
 
@@ -125,7 +135,6 @@ namespace ChargingCarbinet.UnitTests
             _displaySimulator.DidNotReceive().ShowCurrentlyChargingMessage();
         }
 
-        // tjek også på StopCharge (spørg frank)
         // Grænseværdier der skal kalde ShowCurrentErrorMessage
         [TestCase(500.0001)]
         [TestCase(700)]
