@@ -17,7 +17,7 @@ namespace ChargingCabinet.Application
             ILogFileSimulator log = new LogFileSimulator(write);
             IRfidReaderSimulator rfidReader = new RfidReaderSimulator();
             IChargeControl chargeControl = new ChargeControl(display, usb);
-            IStationControl stationControl = new StationControl(door,chargeControl,display,log,rfidReader);
+            //IStationControl stationControl = new StationControl(door,chargeControl,display,log,rfidReader);
 
             bool finish = false;
             do
