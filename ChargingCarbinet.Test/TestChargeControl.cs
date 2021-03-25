@@ -52,9 +52,14 @@ namespace ChargingCarbinet.UnitTests
         [Test]
         public void CheckIf_StartCharge_CallsStartCharge()
         {
-            int rfidDetected = 123;
-            _rfidReaderSimulator.RFIDDetectedEvent += Raise.EventWith(new RFIDDetectedEventArgs() { RFIDDetected = rfidDetected });
+            
+            //int rfidDetected = 123;
 
+            //_uut.IsConnected().Returns(true);
+            //_rfidReaderSimulator.RFIDDetectedEvent += Raise.EventWith(new RFIDDetectedEventArgs() { RFIDDetected = rfidDetected });
+
+            
+            _uut.StartCharge();
             _usbCharger.Received(1).StartCharge();
         }
 

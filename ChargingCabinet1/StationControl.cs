@@ -38,6 +38,8 @@ namespace ChargingCabinet
             _logFileSimulator = logFileSimulator;
             _rfidReaderSimulator = rfidReaderSimulator;
 
+            State = LadeskabState.Available;
+
             _door.DoorOpenEvent += DoorOpened;
             _door.DoorCloseEvent += DoorClosed;
             _rfidReaderSimulator.RFIDDetectedEvent += RfidDetected;
