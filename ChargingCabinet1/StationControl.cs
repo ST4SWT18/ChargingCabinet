@@ -25,8 +25,6 @@ namespace ChargingCabinet
 
         public int OldId { get; set; }
         public LadeskabState State { get; set; }
-        
-
 
 
         public StationControl(IDoorSimulator door, 
