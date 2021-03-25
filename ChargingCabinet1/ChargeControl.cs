@@ -12,7 +12,7 @@ namespace ChargingCabinet
     {
         private IDisplaySimulator _displaySimulator;
         private IUsbCharger _usbCharger;
-        public double CurrentCurrent { get; set; } //hehe
+        public double CurrentCurrent { get; set; }
 
         public ChargeControl(IDisplaySimulator displaySimulator, IUsbCharger usbCharger)
         {
