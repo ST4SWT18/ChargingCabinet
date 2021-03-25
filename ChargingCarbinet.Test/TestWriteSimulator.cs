@@ -20,7 +20,7 @@ namespace ChargingCarbinet.UnitTests
         }
 
         [TestCase(50)]
-        public void test(int id)
+        public void WriteLineLocked_OutputString_IsEqualTo_Expected(int id)
         {
             string expected = DateTime.Now + ": Skab låst med RFID: " + id + "\r\n";
 
@@ -31,7 +31,7 @@ namespace ChargingCarbinet.UnitTests
         }
 
         [TestCase(50)]
-        public void test2(int id)
+        public void WriteLineUnlocked_OutputString_IsEqualTo_Expected(int id)
         {
             string expected = DateTime.Now + ": Skab låst op med RFID: " + id + "\r\n";
 
