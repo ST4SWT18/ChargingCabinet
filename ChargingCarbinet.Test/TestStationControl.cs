@@ -56,8 +56,8 @@ namespace ChargingCarbinet.UnitTests
         [Test]
         public void CheckIf_ShowConnectPhoneMessage_IsCalled_WhenDoorOpenEventIsTriggered()
         {
-
-            _doorSimulator.DoorOpenEvent += Raise.EventWith(new DoorOpenEventArgs());
+            bool doorOpen = true;
+            _doorSimulator.DoorOpenEvent += Raise.EventWith(new DoorOpenEventArgs(){DoorOpened=doorOpen});
 
             _displaySimulator.Received(1).ShowConnectPhoneMessage();
 
@@ -67,8 +67,8 @@ namespace ChargingCarbinet.UnitTests
         [Test]
         public void CheckIf_ShowReadRfidMessage_IsCalled_WhenDoorCloseEventIsTriggered()
         {
-
-            _doorSimulator.DoorCloseEvent += Raise.EventWith(new DoorCloseEventArgs());
+            bool doorClose = true;
+            _doorSimulator.DoorCloseEvent += Raise.EventWith(new DoorCloseEventArgs(){DoorClosed = doorClose});
 
             _displaySimulator.Received(1).ShowReadRfidMessage();
 
