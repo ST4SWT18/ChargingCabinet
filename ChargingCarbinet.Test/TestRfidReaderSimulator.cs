@@ -48,7 +48,12 @@ namespace ChargingCarbinet.Test
         public void OnRfidRead_RFIDDetectedEventArgs_IsNotNull()
         {
             _uut.OnRfidRead(1);
-            Assert.That(_rfidDetectedEventArgs, Is.Not.Null);
+            Assert.Multiple(() =>
+            {
+                Assert.That(_rfidDetectedEventArgs, Is.Not.Null);
+                Assert.That(_rfidDetectedEventArgs.RFIDDetected, Is.EqualTo(1));
+            });
+
         }
 
     }

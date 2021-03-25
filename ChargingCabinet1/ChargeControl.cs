@@ -41,6 +41,7 @@ namespace ChargingCabinet
             else if (CurrentCurrent > 500)
             {
                 _displaySimulator.ShowCurrentErrorMessage();
+                _usbCharger.SimulateOverload(true);
                 StopCharge();
             }
             else
