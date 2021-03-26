@@ -16,6 +16,7 @@ namespace ChargingCabinet
             DoorOpen
         };
 
+        // Her mangler flere member variable
         private IChargeControl _charger;
         private IDisplaySimulator _displaySimulator;
         private ILogFileSimulator _logFileSimulator;
@@ -36,8 +37,6 @@ namespace ChargingCabinet
             _displaySimulator = displaySimulator;
             _logFileSimulator = logFileSimulator;
             _rfidReaderSimulator = rfidReaderSimulator;
-
-            State = LadeskabState.Available;
 
             _door.DoorOpenEvent += DoorOpened;
             _door.DoorCloseEvent += DoorClosed;
@@ -67,6 +66,7 @@ namespace ChargingCabinet
                     }
 
                     break;
+                    //hvornår er DoorOpen casen relevant? 
                 case LadeskabState.DoorOpen:
                     // Ignore
                     break;
