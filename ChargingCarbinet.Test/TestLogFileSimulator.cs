@@ -16,15 +16,14 @@ namespace ChargingCarbinet.UnitTests
         private LogFileSimulator _uut;
         private IWriteSimulator _write;
         private StringWriter _output;
+        private StreamWriter streamWriter;
 
         [SetUp]
         public void Setup()
         {
             _write = Substitute.For<IWriteSimulator>();
             _uut = new LogFileSimulator(_write);
-
-            _output = new StringWriter();
-            System.Console.SetOut(_output);
+            streamWriter = StreamWriter.Null;
         }
 
         //[TestCase(1)]
@@ -33,7 +32,7 @@ namespace ChargingCarbinet.UnitTests
         //public void LogDoorLocked_CallsWriteLineLocked(int id)
         //{
         //    _uut.LogDoorLocked(id);
-        //    _write.Received(1).WriteLineLocked(id);
+        //    _write.Received(1).WriteLineLocked(streamWriter, id);
         //}
 
         //[TestCase(1)]
@@ -42,7 +41,7 @@ namespace ChargingCarbinet.UnitTests
         //public void LogDoorUnlocked_CallsWriteLineUnlocked(int id)
         //{
         //    _uut.LogDoorUnlocked(id);
-        //    _write.Received(1).WriteLineUnlocked(id);
+        //    _write.Received(1).WriteLineUnlocked(streamWriter, id);
         //}
     }
 }
