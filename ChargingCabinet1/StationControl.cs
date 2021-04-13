@@ -9,7 +9,7 @@ namespace ChargingCabinet
     public class StationControl
     {
         // Enum med tilstande ("states") svarende til tilstandsdiagrammet for klassen
-        public enum LadeskabState
+        private enum LadeskabState
         {
             Available,
             Locked,
@@ -23,8 +23,8 @@ namespace ChargingCabinet
         private IDoorSimulator _door;
         private IRfidReaderSimulator _rfidReaderSimulator;
 
-        public int OldId { get; set; }
-        public LadeskabState State { get; set; }
+        private int _oldId;
+        private LadeskabState _state;
 
 
         public StationControl(IDoorSimulator door, 
@@ -46,7 +46,7 @@ namespace ChargingCabinet
         // Eksempel på event handler for eventet "RFID Detected" fra tilstandsdiagrammet for klassen
         private void RfidDetected(object sender, RFIDDetectedEventArgs e)
         {
-            switch (State)
+            switch (_state)
             {
                 case LadeskabState.Available:
                     // Check for ladeforbindelse
@@ -54,11 +54,11 @@ namespace ChargingCabinet
                     {
                         _door.LockDoor();
                         _charger.StartCharge();
-                        OldId = e.RFIDDetected;
+                        _oldId = e.RFIDDetected;
                         _logFileSimulator.LogDoorLocked(e.RFIDDetected);
 
                         _displaySimulator.ShowPhoneChargingMessage();
-                        State = LadeskabState.Locked;
+                        _state = LadeskabState.Locked;
                     }
                     else
                     {
@@ -66,15 +66,13 @@ namespace ChargingCabinet
                     }
 
                     break;
-                    //hvornår er DoorOpen casen relevant? 
                 case LadeskabState.DoorOpen:
                     // Ignore
                     break;
 
                 case LadeskabState.Locked:
                     // Check for correct ID
-                    CheckId(OldId, e.RFIDDetected);
-
+                    CheckId(_oldId, e.RFIDDetected);
                     break;
             }
         }
@@ -98,7 +96,7 @@ namespace ChargingCabinet
                 _logFileSimulator.LogDoorUnlocked(Id);
 
                 _displaySimulator.ShowTakePhoneAndCloseDoorMessage();
-                State = LadeskabState.Available;
+                _state = LadeskabState.Available;
             }
             else
             {

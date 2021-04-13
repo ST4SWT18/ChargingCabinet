@@ -6,6 +6,12 @@ namespace ChargingCabinet.Simulators
 {
     public class DisplaySimulator : IDisplaySimulator
     {
+        // generel metode
+        //public void DisplayMessage(string message)
+        //{
+        //    Console.WriteLine(message);
+        //}
+
         public void ShowConnectPhoneMessage()
         {
             Console.WriteLine("Tilslut telefon");

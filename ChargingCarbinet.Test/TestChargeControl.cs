@@ -34,31 +34,17 @@ namespace ChargingCarbinet.UnitTests
         }
 
         [TestCase(true)]
-        public void IsConnected_IsEqualTo_ArgumentTrue(bool newBool)
-        {
-            _usbCharger.Connected = true;
-
-            Assert.That(_uut.IsConnected, Is.EqualTo(newBool));
-        }
-
         [TestCase(false)]
-        public void IsConnected_IsEqualTo_ArgumentFalse(bool newBool)
+        public void IsConnected_CorrectValueIsReturned(bool expected)
         {
-            _usbCharger.Connected = false;
+            _usbCharger.Connected = expected;
 
-            Assert.That(_uut.IsConnected, Is.EqualTo(newBool));
+            Assert.That(_uut.IsConnected, Is.EqualTo(expected));
         }
 
         [Test]
         public void CheckIf_StartCharge_CallsStartCharge()
         {
-            
-            //int rfidDetected = 123;
-
-            //_uut.IsConnected().Returns(true);
-            //_rfidReaderSimulator.RFIDDetectedEvent += Raise.EventWith(new RFIDDetectedEventArgs() { RFIDDetected = rfidDetected });
-
-            
             _uut.StartCharge();
             _usbCharger.Received(1).StartCharge();
         }
@@ -66,10 +52,7 @@ namespace ChargingCarbinet.UnitTests
         [Test]
         public void CheckIf_StopCharge_CallsStopCharge()
         {
-            _uut.CurrentCurrent = 600;
-
-            _usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs() { Current = _uut.CurrentCurrent });
-
+            _uut.StopCharge();
             _usbCharger.Received(1).StopCharge();
         }
 
