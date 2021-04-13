@@ -58,11 +58,11 @@ namespace ChargingCarbinet.UnitTests
 
 
         // Grænseværdi der ikke skal kalde noget
-        [Test]
-        public void CheckIf_NoDisplayMethods_IsCalled_WhenCurrentCurrentIs0()
+        [TestCase(0)]
+        public void CheckIf_NoDisplayMethods_IsCalled_WhenCurrentCurrentIs0(double currentCurrent)
         {
-            _uut.CurrentCurrent = 0;
-            _usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs() { Current = _uut.CurrentCurrent });
+            //_uut.CurrentCurrent = 0;
+            _usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs() { Current = currentCurrent });
             _displaySimulator.DidNotReceive().ShowCurrentlyChargingMessage();
             _displaySimulator.DidNotReceive().ShowPhoneChargingMessage();
             _displaySimulator.DidNotReceive().ShowCurrentErrorMessage();
@@ -80,8 +80,8 @@ namespace ChargingCarbinet.UnitTests
         [TestCase(5)]
         public void CheckIf_ShowFullyChargedMessage_IsCalled_WhenCurrentCurrentIsHigherThan0AndEqualToOrLessThan5(double currentCurrent)
         {
-            _uut.CurrentCurrent = currentCurrent;
-            _usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs() { Current = _uut.CurrentCurrent });
+            //_uut.CurrentCurrent = currentCurrent;
+            _usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs() { Current = currentCurrent });
             _displaySimulator.Received(1).ShowFullyChargedMessage();
         }
 
@@ -89,8 +89,8 @@ namespace ChargingCarbinet.UnitTests
         [TestCase(0)]
         public void CheckIf_ShowFullyChargedMessage_IsNotCalled_WhenCurrentCurrentIs0(double currentCurrent)
         {
-            _uut.CurrentCurrent = currentCurrent;
-            _usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs() { Current = _uut.CurrentCurrent });
+            //_uut.CurrentCurrent = currentCurrent;
+            _usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs() { Current = currentCurrent });
             _displaySimulator.DidNotReceive().ShowFullyChargedMessage();
         }
 
@@ -98,9 +98,9 @@ namespace ChargingCarbinet.UnitTests
         [TestCase(-1)]
         public void CheckIf_ExceptionIsThrown_WhenCurrentCurrentIsMinus1(double currentCurrent)
         {
-            _uut.CurrentCurrent = currentCurrent;
+            //_uut.CurrentCurrent = currentCurrent;
             Assert.That(() => _usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs()
-            { Current = _uut.CurrentCurrent }), Throws.TypeOf<ArgumentException>());
+            { Current = currentCurrent }), Throws.TypeOf<ArgumentException>());
         }
 
         // Grænseværdier der skal kalde ShowCurrentlyChargingMessage
@@ -109,8 +109,8 @@ namespace ChargingCarbinet.UnitTests
         [TestCase(500)]
         public void CheckIf_ShowCurrentlyChargingMessage_IsCalled_WhenCurrentCurrentIsHigherThan5AndEqualToOrLessThan500(double currentCurrent)
         {
-            _uut.CurrentCurrent = currentCurrent;
-            _usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs() { Current = _uut.CurrentCurrent });
+            //_uut.CurrentCurrent = currentCurrent;
+            _usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs() { Current = currentCurrent });
             _displaySimulator.Received(1).ShowCurrentlyChargingMessage();
         }
 
@@ -118,8 +118,8 @@ namespace ChargingCarbinet.UnitTests
         [TestCase(5)]
         public void CheckIf_ShowCurrentlyChargingMessage_IsNotCalled_WhenCurrentCurrentIs5(double currentCurrent)
         {
-            _uut.CurrentCurrent = currentCurrent;
-            _usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs() { Current = _uut.CurrentCurrent });
+            //_uut.CurrentCurrent = currentCurrent;
+            _usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs() { Current = currentCurrent });
             _displaySimulator.DidNotReceive().ShowCurrentlyChargingMessage();
         }
 
@@ -128,8 +128,8 @@ namespace ChargingCarbinet.UnitTests
         [TestCase(700)]
         public void CheckIf_ShowFullyChargedMessage_IsCalled_WhenCurrentCurrentIsHigherThan500(double currentCurrent)
         {
-            _uut.CurrentCurrent = 600;
-            _usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs() { Current = _uut.CurrentCurrent });
+            //_uut.CurrentCurrent = 600;
+            _usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs() { Current = currentCurrent });
             _displaySimulator.Received(1).ShowCurrentErrorMessage();
             _usbCharger.Received(1).SimulateOverload(true);
         }
@@ -138,8 +138,8 @@ namespace ChargingCarbinet.UnitTests
         [TestCase(500)]
         public void CheckIf_ShowFullyChargedMessage_IsNotCalled_WhenCurrentCurrentIs500(double currentCurrent)
         {
-            _uut.CurrentCurrent = 500;
-            _usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs() { Current = _uut.CurrentCurrent });
+            //_uut.CurrentCurrent = 500;
+            _usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs() { Current = currentCurrent });
             _displaySimulator.DidNotReceive().ShowCurrentErrorMessage();
         }
     }
