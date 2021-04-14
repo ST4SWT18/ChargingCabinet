@@ -112,8 +112,9 @@ namespace ChargingCarbinet.UnitTests
         }
 
         // Ugyldig værdi - kaster exception
-        [TestCase(-1)]
-        public void CheckIf_ExceptionIsThrown_WhenCurrentCurrentIsMinus1(double currentCurrent)
+        [TestCase(-0.0001)]
+        [TestCase(-1000)]
+        public void CheckIf_ExceptionIsThrown_WhenCurrentCurrentIsNegative(double currentCurrent)
         {
             _uut.CurrentCurrent = currentCurrent;
             Assert.That(() => _usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs()
