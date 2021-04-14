@@ -79,11 +79,17 @@ namespace ChargingCabinet
 
         private void DoorOpened(object sender, DoorOpenEventArgs e)
         {
+            //manglede vi ikke dette?
+            _state = LadeskabState.DoorOpen;
+
             _displaySimulator.ShowConnectPhoneMessage();
         }
 
         private void DoorClosed(object sender, DoorCloseEventArgs e)
         {
+            //og dette?
+            _state = LadeskabState.Available;
+
             _displaySimulator.ShowReadRfidMessage();
         }
 
