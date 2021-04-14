@@ -24,8 +24,6 @@ namespace ChargingCarbinet.UnitTests
         }
 
         [TestCase(1)]
-        [TestCase(50)]
-        [TestCase(1000)]
         public void LogDoorLocked_CallsWriteLineLocked(int id)
         {
             _uut.LogDoorLocked(id);
@@ -33,8 +31,6 @@ namespace ChargingCarbinet.UnitTests
         }
 
         [TestCase(1)]
-        [TestCase(50)]
-        [TestCase(1000)]
         public void LogDoorUnlocked_CallsWriteLineUnlocked(int id)
         {
             _uut.LogDoorUnlocked(id);
