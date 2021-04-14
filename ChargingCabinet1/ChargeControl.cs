@@ -12,6 +12,8 @@ namespace ChargingCabinet
     {
         private IDisplaySimulator _displaySimulator;
         private IUsbCharger _usbCharger;
+
+        ////Fjernet grundet genafleveringskommentar
         //public double CurrentCurrent { get; set; }
 
         public ChargeControl(IDisplaySimulator displaySimulator, IUsbCharger usbCharger)
@@ -24,6 +26,7 @@ namespace ChargingCabinet
 
         private void NewCurrentValue(object sender, CurrentEventArgs e)
         {
+            ////Fjernet grundet genafleveringskommentar
             //CurrentCurrent = e.Current;
 
             if (e.Current == 0)
