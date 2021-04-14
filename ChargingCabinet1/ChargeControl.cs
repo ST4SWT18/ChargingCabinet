@@ -28,11 +28,12 @@ namespace ChargingCabinet
 
             if (e.Current == 0)
             {
-
+                _usbCharger.SimulateConnected(false);
             }
             else if (e.Current > 0 && e.Current <= 5)
             {
                 _displaySimulator.ShowFullyChargedMessage();
+                StopCharge();
             }
             else if (e.Current > 5 && e.Current <= 500)
             {

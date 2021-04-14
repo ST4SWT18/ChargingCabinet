@@ -12,7 +12,7 @@ namespace ChargingCabinet.Simulators
         private const double MaxCurrent = 500.0; // mA
         private const double FullyChargedCurrent = 2.5; // mA
         private const double OverloadCurrent = 750; // mA
-        private const int ChargeTimeMinutes = 20; // minutes
+        private const int ChargeTimeMinutes = 1; // minutes
         private const int CurrentTickInterval = 250; // ms
 
         public event EventHandler<CurrentEventArgs> CurrentValueEvent;
@@ -83,7 +83,7 @@ namespace ChargingCabinet.Simulators
                     CurrentValue = 500;
 
                     //skal den være her?? - B
-                    Console.WriteLine("Is charging");
+                    //Console.WriteLine("Is charging");
                 }
                 else if (Connected && _overload)
                 {
