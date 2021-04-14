@@ -13,32 +13,28 @@ namespace ChargingCarbinet.UnitTests
     {
         //UDKAST TIL TEST AF LOGFILESIMULATOR - FORKLARING FINDES I RAPPORT
 
-        private LogFileSimulator _uut;
-        private IWriteSimulator _write;
+        //private LogFileSimulator _uut;
+        //private IWriteSimulator _write;
 
-        [SetUp]
-        public void Setup()
-        {
-            _write = Substitute.For<IWriteSimulator>();
-            _uut = new LogFileSimulator(_write);
-        }
+        //[SetUp]
+        //public void Setup()
+        //{
+        //    _write = Substitute.For<IWriteSimulator>();
+        //    _uut = new LogFileSimulator(_write);
+        //}
 
-        [TestCase(1)]
-        [TestCase(50)]
-        [TestCase(1000)]
-        public void LogDoorLocked_CallsWriteLineLocked(int id)
-        {
-            _uut.LogDoorLocked(id);
-            _write.Received(1).LockedMessage(id);
-        }
+        //[TestCase(1)]
+        //public void LogDoorLocked_CallsWriteLineLocked(int id)
+        //{
+        //    _uut.LogDoorLocked(id);
+        //    _write.Received(1).LockedMessage(id);
+        //}
 
-        [TestCase(1)]
-        [TestCase(50)]
-        [TestCase(1000)]
-        public void LogDoorUnlocked_CallsWriteLineUnlocked(int id)
-        {
-            _uut.LogDoorUnlocked(id);
-            _write.Received(1).UnlockedMessage(id);
-        }
+        //[TestCase(1)]
+        //public void LogDoorUnlocked_CallsWriteLineUnlocked(int id)
+        //{
+        //    _uut.LogDoorUnlocked(id);
+        //    _write.Received(1).UnlockedMessage(id);
+        //}
     }
 }

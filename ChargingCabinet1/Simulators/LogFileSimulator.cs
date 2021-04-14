@@ -27,8 +27,13 @@ namespace ChargingCabinet.Interfaces
         {
             using (var writer = File.AppendText(_logFile))
             {
-                writer.WriteLine(_write.UnlockedMessage(Id));
+                writer.WriteLine(WriteMessage(Id));
             }
+        }
+
+        public string WriteMessage(int Id)
+        {
+            return _write.UnlockedMessage(Id);
         }
     }
 }
