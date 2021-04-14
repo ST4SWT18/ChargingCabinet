@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using ChargingCabinet.Simulators;
+using NSubstitute;
 using NUnit.Framework;
 
 namespace ChargingCarbinet.UnitTests
@@ -20,23 +21,21 @@ namespace ChargingCarbinet.UnitTests
         }
 
         [TestCase(50)]
-        public void WriteLineLocked_OutputString_IsEqualTo_Expected(int id)
+        public void LockedMessage_OutputString_IsEqualTo_Expected(int id)
         {
-            string expected = DateTime.Now + ": Skab låst med RFID: " + id + "\r\n";
+            string expected = DateTime.Now + ": Skab låst med RFID: " + id;
 
-            _uut.WriteLineLocked(id);
-            string result = _output.ToString();
+            string result = _uut.LockedMessage(id);
 
             Assert.AreEqual(expected, result);
         }
 
         [TestCase(50)]
-        public void WriteLineUnlocked_OutputString_IsEqualTo_Expected(int id)
+        public void UnlockedMessage_OutputString_IsEqualTo_Expected(int id)
         {
-            string expected = DateTime.Now + ": Skab låst op med RFID: " + id + "\r\n";
+            string expected = DateTime.Now + ": Skab låst op med RFID: " + id;
 
-            _uut.WriteLineUnlocked(id);
-            string result = _output.ToString();
+            string result = _uut.UnlockedMessage(id);
 
             Assert.AreEqual(expected, result);
         }

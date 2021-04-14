@@ -1,8 +1,12 @@
-﻿namespace ChargingCabinet.Interfaces
+﻿using System.IO;
+
+namespace ChargingCabinet.Interfaces
 {
     public interface IWriteSimulator
     {
-        void WriteLineLocked(int Id);
-        void WriteLineUnlocked(int Id);
+        void WriteLineLocked(StreamWriter writer, int Id);
+        void WriteLineUnlocked(StreamWriter writer, int Id);
+        string LockedMessage(int Id);
+        string UnlockedMessage(int Id);
     }
 }
