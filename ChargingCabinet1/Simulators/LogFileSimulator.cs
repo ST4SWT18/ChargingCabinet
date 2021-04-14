@@ -9,27 +9,25 @@ namespace ChargingCabinet.Interfaces
     {
         private string _logFile = "logfile.txt"; // Navnet på systemets log-fil
         private IWriteSimulator _write;
-        private StreamWriter writer;
 
         public LogFileSimulator(IWriteSimulator write)
         {
             _write = write;
-            writer = File.AppendText(_logFile);
         }
 
         public void LogDoorLocked(int Id)
         {
-            using (writer)
+            using (var writer = File.AppendText(_logFile))
             {
-                _write.WriteLineLocked(writer, Id);
+                writer.WriteLine(_write.LockedMessage(Id));
             }
         }
 
         public void LogDoorUnlocked(int Id)
         {
-            using (writer)
+            using (var writer = File.AppendText(_logFile))
             {
-                _write.WriteLineUnlocked(writer, Id);
+                writer.WriteLine(_write.UnlockedMessage(Id));
             }
         }
     }
