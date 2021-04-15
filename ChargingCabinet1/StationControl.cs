@@ -79,16 +79,28 @@ namespace ChargingCabinet
 
         private void DoorOpened(object sender, DoorOpenEventArgs e)
         {
-            _state = LadeskabState.DoorOpen;
+            if (_state == LadeskabState.Available)
+            {
+                _state = LadeskabState.DoorOpen;
 
-            _displaySimulator.ShowConnectPhoneMessage();
+                _displaySimulator.ShowConnectPhoneMessage();
+            }
+            else
+            {
+                _displaySimulator.ShowRfidErrorMessage();
+            }
+            
         }
 
         private void DoorClosed(object sender, DoorCloseEventArgs e)
         {
-            _state = LadeskabState.Available;
+            if (_state == LadeskabState.DoorOpen)
+            {
+                _state = LadeskabState.Available;
 
-            _displaySimulator.ShowReadRfidMessage();
+                _displaySimulator.ShowReadRfidMessage();
+            }
+
         }
 
         private void CheckId(int OldId, int Id)

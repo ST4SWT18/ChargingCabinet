@@ -29,26 +29,80 @@ namespace ChargingCarbinet.UnitTests
                 _rfidReaderSimulator);
         }
 
-
         // Eventhandler der skal kalde metoden ShowConnectPhoneMessage
         [Test]
-        public void CheckIf_ShowConnectPhoneMessage_IsCalled_WhenDoorOpenEventIsTriggered()
+        public void CheckIf_ShowConnectPhoneMessage_IsCalled_WhenDoorOpenEventIsTriggered_AndStateIsAvailable()
         {
             bool doorOpen = true;
             _doorSimulator.DoorOpenEvent += Raise.EventWith(new DoorOpenEventArgs() {DoorOpened = doorOpen});
-
+            
             _displaySimulator.Received(1).ShowConnectPhoneMessage();
 
+        }   
+        
+        // Eventhandler der skal kalde metoden ShowRfidErrorMessage, fordi døren allerede er i åben tilstand
+        [Test]
+        public void CheckIf_ShowRfidErrorMessage_IsCalled_WhenDoorOpenEventIsTriggered_AndStateIsDoorOpen()
+        {
+            bool doorOpen = true;
+            _doorSimulator.DoorOpenEvent += Raise.EventWith(new DoorOpenEventArgs() {DoorOpened = doorOpen});
+            _doorSimulator.DoorOpenEvent += Raise.EventWith(new DoorOpenEventArgs() { DoorOpened = doorOpen });
+
+            _displaySimulator.Received(1).ShowRfidErrorMessage();
+        }        
+        
+        // Eventhandler der skal kalde metoden ShowRfidErrorMessage, fordi døren er låst
+        [Test]
+        public void CheckIf_ShowRfidErrorMessage_IsCalled_WhenDoorOpenEventIsTriggered_AndStateIsLocked()
+        {
+            bool doorOpen = true;
+            int rfidDetected = 123;
+            _chargeControl.IsConnected().Returns(true);
+
+            _rfidReaderSimulator.RFIDDetectedEvent += Raise.EventWith(new RFIDDetectedEventArgs() { RFIDDetected = rfidDetected });
+            _doorSimulator.DoorOpenEvent += Raise.EventWith(new DoorOpenEventArgs() {DoorOpened = doorOpen});
+            
+            _displaySimulator.Received(1).ShowRfidErrorMessage();
         }
+
 
         // Eventhandler der skal kalde metoden ShowReadRfidMessage
         [Test]
-        public void CheckIf_ShowReadRfidMessage_IsCalled_WhenDoorCloseEventIsTriggered()
+        public void CheckIf_ShowReadRfidMessage_IsCalled_WhenDoorCloseEventIsTriggered_AndStateIsDoorOpen()
+        {
+            bool doorClose = true;
+            bool doorOpen = true;
+
+            _doorSimulator.DoorOpenEvent += Raise.EventWith(new DoorOpenEventArgs() { DoorOpened = doorOpen });
+            _doorSimulator.DoorCloseEvent += Raise.EventWith(new DoorCloseEventArgs() {DoorClosed = doorClose});
+
+            _displaySimulator.Received(1).ShowReadRfidMessage();
+
+        }        
+        
+        // Eventhandler der IKKE skal kalde metoden ShowReadRfidMessage, da state er available
+        [Test]
+        public void CheckIf_ShowReadRfidMessage_IsNotCalled_WhenDoorCloseEventIsTriggered_AndStateIsAvailable()
         {
             bool doorClose = true;
             _doorSimulator.DoorCloseEvent += Raise.EventWith(new DoorCloseEventArgs() {DoorClosed = doorClose});
 
-            _displaySimulator.Received(1).ShowReadRfidMessage();
+            _displaySimulator.DidNotReceive().ShowReadRfidMessage();
+
+        }        
+        
+        // Eventhandler der IKKE skal kalde metoden ShowReadRfidMessage, da døren allerede er låst
+        [Test]
+        public void CheckIf_ShowReadRfidMessage_IsNotCalled_WhenDoorCloseEventIsTriggered_AndStateIsLocked()
+        {
+            bool doorClose = true;
+            int rfidDetected = 123;
+            _chargeControl.IsConnected().Returns(true);
+
+            _rfidReaderSimulator.RFIDDetectedEvent += Raise.EventWith(new RFIDDetectedEventArgs() { RFIDDetected = rfidDetected });
+            _doorSimulator.DoorCloseEvent += Raise.EventWith(new DoorCloseEventArgs() {DoorClosed = doorClose});
+
+            _displaySimulator.DidNotReceive().ShowReadRfidMessage();
 
         }
 
